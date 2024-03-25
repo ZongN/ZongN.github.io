@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+	<head>
+		<meta charset="UTF-8">
+		<title>Person Brand WebSite - ZongEn</title>
+		<link rel="icon" type="image/x-icon" href="img/z-logo.png">
+		<script src="https://code.highcharts.com/highcharts.js"></script>
+		<script src="https://code.highcharts.com/modules/heatmap.js"></script>
+		<script src="https://code.highcharts.com/modules/treemap.js"></script>
+		<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+		<script src="script/html2canvas.js"></script>
+		<script src="script/html2canvas.min.js"></script>
+		<script src="script/viewer.js"></script>
+		<script src="script/viewer.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/base.css">
+		<link rel="stylesheet" type="text/css" href="css/viewer.min.css">
+		<style>
+		 section{
+			width:100%;
+			display:flex;
+			justify-content: center;
+			align-items: center;
+			text-align:center;
+			height:100vh;
+			align-items: center;
+		 }
+		 #Education article{
+			margin:5vw;
+		 }
+		 #Certificate img{
+			border: .1px solid;
+			box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15) !important;
+			transition: transform 0.5s;			
+		 }
+		 #Certificate img:hover{
+			transform: scale(1.2);
+		 }
+		 #Project font{
+			color: #2894FF;
+		 }
+		 #Project span{
+			line-height: 1.8;
+		 }
+		 #Project h2{
+			margin:2%;
+		 }
+		 .text_content{
+			text-align:left;
+			white-space: nowrap;
+		 }
+		 .text_content p{
+			border-left:2px solid gray;
+			margin:1%;
+			padding:1%;
+		 }
+		 .text_content font{
+			font-weight:bold;
+			background:rgb(250, 250, 0,.8)
+		 }		 
+		 .horizontal_layout{
+			display:flex;
+			justify-content: center;
+			align-items: center;
+		 }
+		 .page_selection{
+			color:gray;
+			position: fixed;
+			right: 4vw;
+			bottom: 4vh;
+			transition: transform 0.3s;	
+		 }
+		 #next_btn,#last_btn{
+			margin: .5vw;
+		 }
+		 #next_btn:hover{
+			color:black;
+		 }
+		 #last_btn:hover{
+			color:black;
+		 }
+		 
+		 
+		 .jc_normal{
+			justify-content: normal !important;
+		 }
+		 .experience_content_p{
+			background-color: rgb(224, 224, 224);
+			border-radius: 5px;
+			margin: auto .5vw auto 0;
+			padding: 2%;
+			height: 5vh;
+			width: 5vh;
+			line-height: 5vh;
+		 }
+		 .experience_content_span{
+			background-color: rgb(224, 224, 224);
+			border-radius: 5px;
+			margin: .5vw 0;
+			padding: 2%;
+			height: 5vh;
+			width: 20vw;
+			line-height: 5vh;
+			text-align: left;
+		 }
+		</style>
+	</head>
+	<body>
+		<!-- <header></header> -->
+		<nav>
+			<span>Full Stack Developer</span><span> | </span>
+			<span class="underline-animation" onmousemove="javascript:document.body.style.cursor='pointer';" onmouseout="javascript:document.body.style.cursor='default';" onclick="scrollToTarget('Information')">Information</span><span> / </span>
+			<span class="underline-animation" onmousemove="javascript:document.body.style.cursor='pointer';" onmouseout="javascript:document.body.style.cursor='default';" onclick="scrollToTarget('Education')">Education</span><span> / </span>
+			<span class="underline-animation" onmousemove="javascript:document.body.style.cursor='pointer';" onmouseout="javascript:document.body.style.cursor='default';" onclick="scrollToTarget('Work_Experience')">Work Experience</span><span> / </span>
+			<span class="underline-animation" onmousemove="javascript:document.body.style.cursor='pointer';" onmouseout="javascript:document.body.style.cursor='default';" onclick="scrollToTarget('Skills_N_Expertise')">Skills & Expertise</span><span> / </span>
+			<span class="underline-animation" onmousemove="javascript:document.body.style.cursor='pointer';" onmouseout="javascript:document.body.style.cursor='default';" onclick="scrollToTarget('Project')">Project</span><span> / </span>
+			<span class="underline-animation" onmousemove="javascript:document.body.style.cursor='pointer';" onmouseout="javascript:document.body.style.cursor='default';" onclick="scrollToTarget('Certificate')">Certificate</span>
+		</nav>
+		<section id="Information">			
+			<div>
+				<h2># Information</h2>
+				<img id="myself" onclick="Ocnlick_Img_Viewer('myself')" src="img/myself.jpg" style="width:10vw;height:10vw;border-radius:10vw;background-size:cover;" />
+				<h1>ZongEn Tsai 蔡宗恩</h1>
+				<p style="color:gray;">29歲 | 嘉義 | 碩士 | 3~4 年工作經驗</p>
+				<div class="text_content">
+					<p>2020年迄今 任職於友達光電，並擔任製造部 <font>智慧製造工程師</font><sub>(全端)</sub></p>
+					<p>擁有三年以上的 <font>工廠端開發經驗</font>，具第一線數據串接 <font>實戰經驗</font>。</p>
+					<p>個人特質 <font>獨立性佳</font>、<font>執行力強</font>、抗壓性高、靈活多能工、自我要求高。</p>
+					<p><font>多能工</font> 與 <font>執行力</font> 深受肯定，<font>獲職等晉升</font> 與 連續兩年<font>久任合約</font>。</p>
+				</div>
+			</div>		
+		</section>
+		<section id="Education">
+			<div>
+				<h2># Education</h2>
+				<div style="position:absolute;left:0;background-image:url('img/education.png');width:100vw;height:70vh;filter:brightness(50%);background-size:cover;z-index:-1;"></div>
+				<div style="width: 100vw;height: 70vh;display: flex;justify-content: center;align-items: center;color:White;">
+					<article>
+						<h2>高中 / 嘉義高中 / 普通科</h2>
+						<h4>2010/09 ~ 2013/06</h4>
+					</article>
+					<div><h2> - </h2></div>
+					<article>
+						<h2>大學 / 義守大學 / 資訊工程學系</h2>
+						<h4>2013/09 ~ 2017/06</h4>
+						<fieldset style="width: 14vw;">
+							<legend>日月光實習計畫</legend>
+							擔任 MES 單位實習生</br>專責簡易程式開發、日常程式維護與程式測試。期間開發一個基於雜湊驗證的代碼比對工具，用於正式環境與測試環境的代碼差異比對。
+						</fieldset>
+					</article>
+					<div><h2> - </h2></div>
+					<article>
+						<h2>研究所 / 義守大學 / 資訊工程所</h2>
+						<h4>2017/09 ~ 2019/08</h4>
+						<fieldset style="width: 15vw;">
+							<legend>中國鋼鐵研究計畫</legend>
+							擔任中鋼產學計畫研究助理</br>任務包含數據處理、演算法程式開發並透過機器學習優化排程問題。主要使用R語言與機器學習。結束前，程式已實際於該公司上線使用中。
+						</fieldset>
+					</article>
+				</div>
+			</div>			
+		</section>
+		<section id="Work_Experience">
+			<div>
+				<h2># Work Experience</h2>
+				<div class="horizontal_layout">
+					<div class="card_simple">
+						<table style="margin: 2vh auto;"><tr><td><img src="img/kmu-logo.jpg" style="width:25px;" /></td><th>高雄醫學大學</th></tr></table>
+						<h2>小兒神經科 / 研究助理</h2>
+						<h3>EEG腦電圖生醫數據 處理 與 分析</h3>
+						<p style="color:gray;">2019/09~2020/08 (1年)</p>
+						<p>工作職責</p>
+						<div class="experience_content">
+							<div class="horizontal_layout jc_normal"><p class="experience_content_p">處理</p><span class="experience_content_span">腦電圖濾波、去除雜訊、波型標記 (Matlab)</span></div>
+							<div class="horizontal_layout jc_normal"><p class="experience_content_p">分析</p><span class="experience_content_span">運用機器學習建模、調參、分類器、分析 (R)</span></div>
+							<div class="horizontal_layout jc_normal"><p class="experience_content_p">自動</p><span class="experience_content_span">開發程式化前處理流程 (eeglab-stylized)</span></div>
+						</div>						
+					</div>
+					<div class="card_simple">
+						<div>
+							<table style="margin: 2vh auto;"><tr><td><img src="img/auo-logo.png" width="36px"></td><th>友達光電</th></tr></table>
+							<h2>製造部 / 智慧製造工程師</h2>
+							<h3>資訊整合、程式自動化、數據分析、視覺化</h3>
+							<p style="color:gray;">2020/09~迄今 (3年+)</p>
+							<p>工作職責</p>
+							<div style="position: absolute;top: 33%;right:5%;"><img src="img/level-up.png" style="width:2.5vw;" title="職等晉升" /><img src="img/contract.png" style="width:2.5vw;" title="連續兩年久任合約" /></div>
+							<div class="experience_content">
+								<div class="horizontal_layout jc_normal"><p class="experience_content_p" style="margin: 0 .5vw .5vh 0;">整合</p><span class="experience_content_span" style="line-height: normal;margin: 0 .5vw .5vh 0;">製造整合平台、便捷式 MES 操作平台、機台生產資訊串接 (APS.NET C#、SQL)</span></div>
+								<div class="horizontal_layout jc_normal"><p class="experience_content_p" style="margin: 0 .5vw .5vh 0;">自動</p><span class="experience_content_span" style="line-height: normal;margin: 0 .5vw .5vh 0;">全自動生產、機器人流程自動化 (Python Selenium、RPA UiPath)</span></div>
+								<div class="horizontal_layout jc_normal"><p class="experience_content_p" style="margin: 0 .5vw .5vh 0;">分析</p><span class="experience_content_span" style="line-height: normal;margin: 0 .5vw .5vh 0;">Cycle Time 解構、Takt Time 三階分析、WIP 檢測 (C#、R)</span></div>
+								<div class="horizontal_layout jc_normal"><p class="experience_content_p" style="margin: 0 .5vw .5vh 0;">視覺</p><span class="experience_content_span" style="line-height: normal;margin: 0 .5vw .5vh 0;">前端資料視覺化 (HTML、HighCharts、ggplot2、Tableau)</span></div>
+							</div>	
+						</div>
+						<div style="display:none;">
+							<table style="margin: 2vh auto;"><tr><td><img src="img/auo-logo.png" width="36px"></td><th>友達光電</th></tr></table>
+							<h2>製造部 / 智慧製造工程師87878787</h2>
+							<h3>資訊整合、程式自動化、數據分析、視覺化</h3>
+							<p style="color:gray;">2020/09~迄今 (888年+)</p>
+							<p>工作職責</p>
+						</div>
+					</div>
+				</div>
+			</div>			
+		</section>
+		<section id="Skills_N_Expertise">
+			<div>
+				<h2># Skills & Expertise</h2>
+				<div class="horizontal_layout">
+					<div class="card">
+						<div class="card_Title">Skills</div>
+						<div class="card_Body">
+							<div id="HighChart_Skills" style="height: 55vh;"></div>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card_Title">Expertise</div>
+						<div class="card_Body">
+							<div id="HighChart_Expertise" style="height: 55vh;"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section id="Project">
+			<div>
+				<h2># Project</h2>
+				<div class="horizontal_layout">
+					<!--Project1-->
+					<div class="card_horizontal">
+						<h2><a href="#" target="_blank"><img src="img/auo-logo.png" width="36px" /></a> Advance Operation Interface</h2>
+						<table cellpadding="5" style="margin:auto;color:gray;">
+							<tr>
+								<td><img src="https://img.shields.io/badge/ASP.NET-C%23-brightgreen" /></td>
+								<td><img src="https://img.shields.io/badge/-資訊整合-orange" /></td>
+								<td><img src="https://img.shields.io/badge/-前端開發-rgb(255,51,153)" /></td>
+								<td><img src="https://img.shields.io/badge/-Web%20Service-blue" /></td>
+								<td><img src="https://img.shields.io/badge/-UI/UX-orange" /></td>
+							</tr>
+						</table>
+						<table>
+							<tr>
+								<td><img id="p-a-opi-p" onclick="Ocnlick_Img_Viewer('p-a-opi-p')" src="img/project-advance-opi-platform.png" style="width: 16vw;border-radius:5px;" /></td>
+								<td style="text-align:justify;">
+									<span>
+										由使用者為出發點所開發的生產操作(OPI)介面。採用<font>分頁式架構</font>，整合執行前所需各種資訊。
+										平台包含生產資訊查找、執行紀錄留存，並<font>大量使用CSS與AJAX技術優化UI設計與UX體驗</font>。
+										</br>平台上線迄今，瀏覽人次<font>超過200+人次</font>，透過平台執行命令數<font>超過10,000+筆</font>。
+									</span>
+								</td>
+							</tr>
+						</table>
+					</div>
+					<!--Project2-->
+					<div class="card_horizontal">
+						<h2><a href="#" target="_blank"><img src="img/auo-logo.png" width="36px" /></a> 製造生產自動化</h2>
+						<table cellpadding="5" style="margin:auto;color:gray;">
+							<tr>
+								<td><img src="https://img.shields.io/badge/Python-3.8.0-rgb(136,0,255)" /></td>
+								<td><img src="https://img.shields.io/badge/Selenium-4.8.0-orange" /></td>
+								<td><img src="https://img.shields.io/badge/IE Browser-9.0-rgb(255,255,56)" /></td>
+								<td><img src="https://img.shields.io/badge/IE Driver-2010-rgb(255,66,255)" /></td>								
+							</tr>
+						</table>
+						<table>
+							<tr>
+								<td><img id="p-s-opi" onclick="Ocnlick_Img_Viewer('p-s-opi')" src="img/project-selenium-opi.png" style="width: 16vw;border-radius:5px;" /></td>
+								<td style="text-align:justify;">
+									<span>
+										利用Python Selenium控制OPI Web介面，取代人員作業。透過程式自動化Model轉換作業，<font>取代原步驟24步作業</font>完成轉換。
+										程式步驟歷程包含開啟瀏覽器、選擇、輸入、點擊、懸停、快捷鍵、表格查找、畫面比對等。
+										<font>終端透過Web介面</font>，讓使用者開關程式、程式情況、執行結果。
+									</span>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="horizontal_layout">
+					<!--Project3-->
+					<div class="card_horizontal">
+						<h2><a href="https://github.com/ZongN/C-Sharp-Quick-Note" target="_blank"><img src="img/github-logo.png" style="width:1.5vw;" /></a> C-Sharp-Quick-Note </h2>
+						<table style="margin:auto;">
+							<tr>
+								<td><img src="https://img.shields.io/badge/ASP.NET-C%23-brightgreen" /></td>
+								<td><img src="https://img.shields.io/badge/C%23-DataTable-green" /></td>
+								<td><img src="https://img.shields.io/badge/C%23-DataRow-green" /></td>
+								<td><img src="https://img.shields.io/badge/C%23-String-green" /></td>
+								<td><img src="https://img.shields.io/badge/C%23-DateTime-green" /></td>
+								<td><img src="https://img.shields.io/badge/C%23-List-green" /></td>
+							</tr>
+						</table>
+						<table>
+							<tr>
+							<td><img id="p-cs-qn-p" onclick="Ocnlick_Img_Viewer('p-cs-qn-p')" src="img/project-c-sharp-quick-note.png" style="width:17.5vw;" /></td>
+							<td style="text-align:justify;">
+								<span>
+									以使用層面為導向的C#筆記。筆記<font>不寫原理與解釋</font>，只記錄各項<font>函數的功能</font>與<font>所需參數</font>，並包含範例程式碼，可直接使用。
+									包含 DataTable、DataRow、String、DateTime、List、Linq 常用類型與指令。
+								</span>
+							</td>
+							</tr>
+						</table>
+					</div>
+					<!--Project4-->
+					<div class="card_horizontal">
+						<h2><a href="https://github.com/ZongN/FeatureSelection?tab=readme-ov-file" target="_blank"><img src="img/github-logo.png" style="width:1.5vw;" /></a> Feature Selection Platform </h2>
+						<table style="margin:auto;">
+							<tr>
+								<td><img src="https://img.shields.io/badge/R-3.5.3-green" /></td>
+								<td><img src="https://img.shields.io/badge/caret-6.0--82-blue" /></td>
+								<td><img src="https://img.shields.io/badge/doParallel-1.0.14-blue" /></td>
+								<td><img src="https://img.shields.io/badge/e1071-1.7--2-blue" /></td>
+								<td><img src="https://img.shields.io/badge/foreach-1.4.4-blue" /></td>
+								<td><img src="https://img.shields.io/badge/mRMRe-2.0.9-blue" /></td>
+							</tr>
+						</table>
+						<table>
+							<tr>
+								<td><img id="p-fs-p" onclick="Ocnlick_Img_Viewer('p-fs-p')" src="img/project-feature-selection-platform.png" style="width:13.5vw;"/></td>
+								<td style="text-align:justify;">
+									<span>
+										這是一個特徵挑選(FS)與利用機器學習(ML)驗證的平台，透過簡單的方式匯入<font>FS演算法</font>，並選擇<font>分類器(CS)</font>進行驗證。即可得到FS挑選結果，並比較不同分類器的差異。
+										</br>同時，程式也<font>支援CPU平行運算</font>核心調用。
+									</span>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section id="Certificate">
+			<div>
+				<h2># Certificate</h2>
+				<div class="horizontal_layout">
+					<table cellpadding="5">
+						<thead style="color:gray;">
+							<tr>
+								<td>研究所成績單</td>
+								<td>iPAS 經濟部人才鑑定 / 物聯網應用</td>
+								<td>iPAS 經濟部人才鑑定 / 資訊安全</td>
+								<td>GS1 Taiwan / EPCIE 物聯網工程師認證</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><img id="Transcript" onclick="Ocnlick_Img_Viewer('Transcript')" src="img/歷年成績單.jpg" style="height: 40vh;" /></td>
+								<td><img id="iPAS_IOT" onclick="Ocnlick_Img_Viewer('iPAS_IOT')" src="img/iPAS證照_物聯網.jpg" style="height: 40vh;" /></td>
+								<td><img id="iPAS_SEC" onclick="Ocnlick_Img_Viewer('iPAS_SEC')" src="img/iPAS證照_資安.jpg" style="height: 40vh;" /></td>
+								<td><img id="GS1_IOT" onclick="Ocnlick_Img_Viewer('GS1_IOT')" src="img/GS1證照_物聯網.jpg" style="height: 40vh;" /></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</section>
+		<div class="page_selection horizontal_layout">
+			<div id="last_btn" style="text-decoration:line-through;" onmousemove="javascript:document.body.style.cursor='pointer';" onmouseout="javascript:document.body.style.cursor='default';" onclick="scrollToTarget('')">Previous</div>
+			/
+			<div id="next_btn" onmousemove="javascript:document.body.style.cursor='pointer';" onmouseout="javascript:document.body.style.cursor='default';" onclick="scrollToTarget('Education')">Next</div>
+		</div>
+		
+		
+		<!-- <footer></footer> -->
+	</body>
+</html>
+<script>
+	// 設置滾輪停止的延遲時間（毫秒）
+	const scrollStopDelay = 200;
+	// 計時器變數
+	let scrollTimer;
+	// 監聽滾動事件
+	
+	window.addEventListener('scroll', () => {
+
+		// 清除之前的計時器
+		clearTimeout(scrollTimer);
+
+		// 啟動新的計時器以檢測滾輪是否停止
+		scrollTimer = setTimeout(() => {
+			// 滾輪已停止轉動，執行相應的操作
+			// section items
+			const sections = document.getElementsByTagName('section');
+		
+			for(var i=0;i<sections.length;i++){
+				const elementTop = document.getElementById(sections[i].id).getBoundingClientRect().top;
+				// 如果目標元素在視窗內
+				if (elementTop < window.innerHeight) {
+					
+					var last_section_id,next_section_id;
+					
+					if(i != 0){
+						last_section_id = sections[i-1].id;
+						document.getElementById('last_btn').style.textDecoration='';
+					}else{
+						document.getElementById('last_btn').style.textDecoration ='line-through';
+					}
+					
+					if(i != sections.length-1){
+						next_section_id = sections[i+1].id;
+						document.getElementById('next_btn').style.textDecoration='';
+					}else{
+						document.getElementById('next_btn').style.textDecoration ='line-through';
+					}
+
+					document.getElementById('next_btn').onclick = function() {
+						scrollToTarget(next_section_id);
+					};
+					
+					document.getElementById('last_btn').onclick = function() {
+						scrollToTarget(last_section_id);
+					};
+				}
+			}
+		}, scrollStopDelay);
+	
+		
+	});
+
+	function scrollToTarget(id) {
+		var targetElement = document.getElementById(id);
+		targetElement.scrollIntoView({ behavior: "smooth" }); // 使用 smooth 滾動效果
+	}
+	
+	function Ocnlick_Img_Viewer(index_Id)
+	{
+		var indexviewer = new Viewer(document.getElementById(index_Id), {
+			navbar: false,
+			toolbar: {
+				zoomIn: 4,
+				zoomOut: 4,
+				oneToOne: 4,
+				reset: 4,
+				prev: 4,
+				play: {
+					show: 4,
+					size: 'large',
+				},
+				next: 4,
+				rotateLeft: 4,
+				rotateRight: 4,
+				flipHorizontal: 4,
+				flipVertical: 4,
+			},
+			filter(image) {
+				return image.complete;
+			}
+		});
+
+		indexviewer.show(index_Id);
+	}
+</script>
+<script>
+	var HC_SKills = Highcharts.chart('HighChart_Skills', {
+  chart: {
+    type: 'bar'
+  },
+  title: {text: null},
+  subtitle: {text: null},
+  xAxis: {
+    type: 'category',
+    labels: {
+      style: {
+        fontSize: '13px',
+        fontFamily: 'Verdana, sans-serif'
+      }
+    }
+  },
+  yAxis: {visible: false},
+  legend: {enabled: false},
+  tooltip: {enabled: false},
+  exporting:{enabled:false},
+  credits:{enabled:false},
+  series: [{
+    name: 'Population',
+    colors: [
+      'rgb(255,0,0)', 'rgb(255,25,0)', 'rgb(255,50,0)', 'rgb(255,75,0)', 'rgb(255,100,0)', 'rgb(255,125,0)', 'rgb(255,150,0)', 'rgb(255,175,0)', 'rgb(255,200,0)', 'rgb(255,225,0)', 'rgb(255,250,0)'
+    ],
+    colorByPoint: true,
+    groupPadding: 0,
+    data: [
+      ['ASP.NET C#', 90],
+      ['Javascript', 80],
+      ['HTML', 75],
+      ['MS SQL', 74],
+      ['ORACLE SQL', 70],
+      ['CSS', 68],
+      ['Python', 67],
+      ['R', 65],
+	  ['MYSQL', 50],      
+      ['Matlab', 35]
+    ],
+    dataLabels: {
+      enabled: false
+    }
+  }]
+});
+</script>
+<script>
+var HC_Expertise = Highcharts.chart('HighChart_Expertise', {
+  title: {
+    text: null
+  },
+  subtitle: {
+    text: null
+  },
+  colorAxis: {
+    minColor: 'rgb(255,0,0)',
+    maxColor: 'rgb(255,250,0)',
+    enable: false
+  },
+  yAxis: {
+    visible: false
+  },
+  legend: {
+    enabled: false
+  },
+  tooltip: {
+    enabled: false
+  },
+  exporting: {
+    enabled: false
+  },
+  credits: {
+    enabled: false
+  },
+  series: [{
+    type: 'treemap',
+    layoutAlgorithm: 'squarified',
+    clip: false,
+    data: [{
+        name: 'ASP.NET',
+        value: 10,
+        colorValue: 1
+      }, {
+        name: 'HTML',
+        value: 8,
+        colorValue: 2
+      }, {
+        name: 'WinForm',
+        value: 8,
+        colorValue: 4
+      }, {
+        name: 'RPA UiPath',
+        value: 7,
+        colorValue: 5
+      }, {
+        name: 'SSMS',
+        value: 6,
+        colorValue: 5
+      },{
+        name: 'Data Analysis',
+        value: 6,
+        colorValue: 5
+      }, {
+        name: 'Feature Selection',
+        value: 5,
+        colorValue: 6
+      }, {
+        name: 'Machine Learning',
+        value: 4,
+        colorValue: 7
+      },{
+        name: 'Database',
+        value: 3.8,
+        colorValue: 8
+      },{
+        name: 'UI/UX',
+        value: 3.5,
+        colorValue: 9
+      },{
+        name: 'Tableau',
+        value: 2,
+        colorValue: 10
+      }
+    ]
+  }]
+});
+</script>
