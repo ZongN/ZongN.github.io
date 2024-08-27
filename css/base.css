@@ -192,3 +192,13 @@ section{
 	border-radius:.3vw;
 	margin-right: .5vw;
 }
+.custom-tooltip {
+	display: none;
+	position: absolute;
+	background-color: #333;
+	color: #fff;
+	padding: 5px;
+	border-radius: 5px;
+	font-size: 14px;
+	z-index: 1000;
+}
