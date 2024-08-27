@@ -7,7 +7,6 @@
 		<script src="https://code.highcharts.com/highcharts.js"></script>
 		<script src="https://code.highcharts.com/modules/heatmap.js"></script>
 		<script src="https://code.highcharts.com/modules/treemap.js"></script>
-		<script src="https://code.highcharts.com/modules/accessibility.js"></script>
 		<script src="script/viewer.js"></script>
 		<script src="script/viewer.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/base.css">
@@ -22,7 +21,7 @@
 	
 	  gtag('config', 'G-ME3272WEH5');
 	</script>
-	<body>
+	<body onload="load_event();">
 		<!-- <header></header> -->
 		<nav>
 			<span>Full Stack Developer</span><span> | </span>
@@ -46,7 +45,7 @@
 						<td><a href="https://www.linkedin.com/in/tsaizongen/" target="_blank"><img src="img/linkedin.png" style="width: 1.2vw;"/></a></td>
 					</tr></table>
 				</p>
-				<p style="color:gray;">29歲 | 嘉義人 | 碩士 | 3~4 年工作經驗</p>
+				<p style="color:gray;"><span id="sp_Age"></span>歲 | 嘉義人 | 碩士 | 3~4 年工作經驗</p>
 				<div class="text_content">
 					<p>2020 年迄今 任職於友達光電，擔任製造部 <font>智慧製造工程師</font><sub>(全端)</sub></p>
 					<p>擁有近四年的 <font>工廠端開發經驗</font>，具第一線數據串接 <font>實戰經驗</font>。</p>
@@ -157,7 +156,7 @@
 						</table>
 						<table>
 							<tr>
-								<td><img id="p-a-opi-p" onclick="Ocnlick_Img_Viewer('p-a-opi-p')" src="img/project-advance-opi-platform.png" class="project-img" /></td>
+								<td><img id="p-a-opi-p" onclick="onclick_img_viewer('p-a-opi-p')" src="img/project-advance-opi-platform.png" class="project-img" /></td>
 								<td style="text-align:justify;" style="font-size:medium;">
 									<span>
 										由使用者為出發點所開發的生產操作(OPI)介面。採用<font>分頁式架構</font>，整合執行前所需各種資訊。
@@ -181,7 +180,7 @@
 						</table>
 						<table>
 							<tr>
-								<td><img id="p-s-opi" onclick="Ocnlick_Img_Viewer('p-s-opi')" src="img/project-selenium-opi.png" class="project-img" /></td>
+								<td><img id="p-s-opi" onclick="onclick_img_viewer('p-s-opi')" src="img/project-selenium-opi.png" class="project-img" /></td>
 								<td style="text-align:justify;" style="font-size:medium;">
 									<span>
 										利用Python Selenium控制OPI Web介面，取代人員作業。透過程式自動化Model轉換作業，<font>取代原步驟24步作業</font>完成轉換。
@@ -206,7 +205,7 @@
 						</table>
 						<table>
 							<tr>
-							<td><img id="p-wssh-t-ws" onclick="Ocnlick_Img_Viewer('p-wssh-t-ws')" src="img/project-webscreenshot-to-webservice.png" class="project-img" /></td>
+							<td><img id="p-wssh-t-ws" onclick="onclick_img_viewer('p-wssh-t-ws')" src="img/project-webscreenshot-to-webservice.png" class="project-img" /></td>
 							<td style="text-align:justify;" style="font-size:medium;">
 								<span>
 									運用<font>前端 + 後端實現報表(Web)截圖並轉發行動裝置</font>。利用 Javascript Html2canvas 完成網頁截圖。
@@ -230,7 +229,7 @@
 						</table>
 						<table>
 							<tr>
-								<td><img id="p-ct-as" onclick="Ocnlick_Img_Viewer('p-ct-as')" src="img/project-cycletime-analysis.png" class="project-img"/></td>
+								<td><img id="p-ct-as" onclick="onclick_img_viewer('p-ct-as')" src="img/project-cycletime-analysis.png" class="project-img"/></td>
 								<td style="text-align:justify;" style="font-size:medium;">
 									<span>
 										階層式生產數據分析。依據產品、模型、製程不同維度進行剖析，並解構其 Cycle Time 的組成結構 Procsee、Wait、Hold Time...等，並利用<font>直觀的視覺化呈現</font>，
@@ -328,9 +327,9 @@
 						<tbody>
 							<tr>
 								<!-- <td><img id="Transcript" onclick="Ocnlick_Img_Viewer('Transcript')" src="img/歷年成績單.jpg" style="height: 40vh;" /></td> -->
-								<td><img id="iPAS_IOT" onclick="Ocnlick_Img_Viewer('iPAS_IOT')" src="img/iPAS證照_物聯網.jpg" style="height: 40vh;" /></td>
-								<td><img id="iPAS_SEC" onclick="Ocnlick_Img_Viewer('iPAS_SEC')" src="img/iPAS證照_資安.jpg" style="height: 40vh;" /></td>
-								<td><img id="GS1_IOT" onclick="Ocnlick_Img_Viewer('GS1_IOT')" src="img/GS1證照_物聯網.jpg" style="height: 40vh;" /></td>
+								<td><img id="iPAS_IOT" onclick="onclick_img_viewer('iPAS_IOT')" src="img/iPAS證照_物聯網.jpg" style="height: 40vh;" /></td>
+								<td><img id="iPAS_SEC" onclick="onclick_img_viewer('iPAS_SEC')" src="img/iPAS證照_資安.jpg" style="height: 40vh;" /></td>
+								<td><img id="GS1_IOT" onclick="onclick_img_viewer('GS1_IOT')" src="img/GS1證照_物聯網.jpg" style="height: 40vh;" /></td>
 							</tr>
 						</tbody>
 					</table>
@@ -351,64 +350,8 @@
 	</body>
 </html>
 <script>
-	// 設置滾輪停止的延遲時間（毫秒）
-	const scrollStopDelay = 200;
-	// 計時器變數
-	let scrollTimer;
-	// 監聽滾動事件
-	
-	window.addEventListener('scroll', () => {
 
-		// 清除之前的計時器
-		clearTimeout(scrollTimer);
-
-		// 啟動新的計時器以檢測滾輪是否停止
-		scrollTimer = setTimeout(() => {
-			// 滾輪已停止轉動，執行相應的操作
-			// section items
-			const sections = document.getElementsByTagName('section');
-		
-			for(var i=0;i<sections.length;i++){
-				const elementTop = document.getElementById(sections[i].id).getBoundingClientRect().top;
-				// 如果目標元素在視窗內
-				if (elementTop < window.innerHeight) {
-					
-					var last_section_id,next_section_id;
-					
-					if(i != 0){
-						last_section_id = sections[i-1].id;
-						document.getElementById('last_btn').style.textDecoration='';
-					}else{
-						document.getElementById('last_btn').style.textDecoration ='line-through';
-					}
-					
-					if(i != sections.length-1){
-						next_section_id = sections[i+1].id;
-						document.getElementById('next_btn').style.textDecoration='';
-					}else{
-						document.getElementById('next_btn').style.textDecoration ='line-through';
-					}
-
-					document.getElementById('next_btn').onclick = function() {
-						scrollToTarget(next_section_id);
-					};
-					
-					document.getElementById('last_btn').onclick = function() {
-						scrollToTarget(last_section_id);
-					};
-				}
-			}
-		}, scrollStopDelay);
-	
-		
-	});
-
-	function scrollToTarget(id) {
-		var targetElement = document.getElementById(id);
-		targetElement.scrollIntoView({ behavior: "smooth" }); // 使用 smooth 滾動效果
-	}
-	
-	function Ocnlick_Img_Viewer(index_Id)
+	function onclick_img_viewer(index_Id)
 	{
 		var indexviewer = new Viewer(document.getElementById(index_Id), {
 			navbar: false,
@@ -434,6 +377,78 @@
 		});
 
 		indexviewer.show(index_Id);
+	}
+
+	function page_previous_and_next(){
+		// 前一頁、後一頁 標示效果
+		// 設置滾輪停止的延遲時間（毫秒）
+		const scrollStopDelay = 200;
+		// 計時器變數
+		let scrollTimer;
+		// 監聽滾動事件
+		
+		window.addEventListener('scroll', () => {
+
+			// 清除之前的計時器
+			clearTimeout(scrollTimer);
+
+			// 啟動新的計時器以檢測滾輪是否停止
+			scrollTimer = setTimeout(() => {
+				// 滾輪已停止轉動，執行相應的操作
+				// section items
+				const sections = document.getElementsByTagName('section');
+			
+				for(var i=0;i<sections.length;i++){
+					const elementTop = document.getElementById(sections[i].id).getBoundingClientRect().top;
+					// 如果目標元素在視窗內
+					if (elementTop < window.innerHeight) {
+						
+						var last_section_id,next_section_id;
+						
+						// 頁首處理
+						if(i != 0){
+							last_section_id = sections[i-1].id;
+							document.getElementById('last_btn').style.textDecoration='';
+						}else{
+							document.getElementById('last_btn').style.textDecoration ='line-through';
+						}
+						
+						// 頁尾處理
+						if(i != sections.length-1){
+							next_section_id = sections[i+1].id;
+							document.getElementById('next_btn').style.textDecoration='';
+						}else{
+							document.getElementById('next_btn').style.textDecoration ='line-through';
+						}
+
+						document.getElementById('next_btn').onclick = function() {
+							scrollToTarget(next_section_id);
+						};
+						
+						document.getElementById('last_btn').onclick = function() {
+							scrollToTarget(last_section_id);
+						};
+					}
+				}
+			}, scrollStopDelay);
+			
+		});
+
+	}
+
+	function scrollToTarget(id) {
+		var targetElement = document.getElementById(id);
+		targetElement.scrollIntoView({ behavior: "smooth" }); // 使用 smooth 滾動效果
+	}
+
+	function how_old_am_i(){
+		const now_year = new Date().getFullYear();
+		document.getElementById('sp_Age').innerHTML = now_year-1995;
+	}
+
+	function load_event(){
+		page_previous_and_next();		
+		how_old_am_i();
 	}
 </script>
 <script>
