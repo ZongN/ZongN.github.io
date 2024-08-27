@@ -4,6 +4,7 @@
 		<meta charset="UTF-8">
 		<title>Person Brand WebSite - ZongEn</title>
 		<link rel="icon" type="image/x-icon" href="img/z-logo.png">
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 		<script src="https://code.highcharts.com/highcharts.js"></script>
 		<script src="https://code.highcharts.com/modules/heatmap.js"></script>
 		<script src="https://code.highcharts.com/modules/treemap.js"></script>
@@ -11,6 +12,19 @@
 		<script src="script/viewer.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/base.css">
 		<link rel="stylesheet" type="text/css" href="css/viewer.min.css">
+		<style>
+			/* 工具提示的基本樣式 */
+			.custom-tooltip {
+				display: none;
+				position: absolute;
+				background-color: #333;
+				color: #fff;
+				padding: 5px;
+				border-radius: 5px;
+				font-size: 14px;
+				z-index: 1000;
+			}
+		</style>
 	</head>
 	<!-- Google tag (gtag.js) -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=G-ME3272WEH5"></script>
@@ -18,7 +32,6 @@
 	  window.dataLayer = window.dataLayer || [];
 	  function gtag(){dataLayer.push(arguments);}
 	  gtag('js', new Date());
-	
 	  gtag('config', 'G-ME3272WEH5');
 	</script>
 	<body onload="load_event();">
@@ -335,6 +348,7 @@
 					</table>
 				</div>
 			</div>
+				
 		</section>
 		<div class="page_selection horizontal_layout">
 			<div id="last_btn" style="text-decoration:line-through;" onmousemove="javascript:document.body.style.cursor='pointer';" onmouseout="javascript:document.body.style.cursor='default';" onclick="scrollToTarget('')">Previous</div>
@@ -348,6 +362,8 @@
 			<p>為確保網頁瀏覽體驗，建議最佳解析度為 1920 x 1080</p>
 		</footer>
 	</body>
+
+	<div class="custom-tooltip" id="tooltip"></div>
 </html>
 <script>
 
@@ -577,4 +593,45 @@ var HC_Expertise = Highcharts.chart('HighChart_Expertise', {
     ]
   }]
 });
+</script>
+<script>
+	$(document).ready(function(){
+		// 選擇所有包含 title 屬性的元素
+		$('[title]').hover(
+			// 滑鼠進入事件
+			function(event){
+				// 取得 title 屬性的值
+				var tooltipContent = $(this).attr('title');
+				
+				// 清空 title 屬性，避免瀏覽器預設的工具提示
+				$(this).attr('data-title', tooltipContent).removeAttr('title');
+				
+				// 顯示自定義工具提示
+				$('#tooltip').html(tooltipContent).css({
+					display: 'block',
+					top: event.pageY + 10 + 'px',
+					left: event.pageX + 10 + 'px'
+				});
+
+				this.style.cursor = 'help';
+			}, 
+			// 滑鼠離開事件
+			function(){
+				// 隱藏工具提示，並恢復 title 屬性
+				var originalTitle = $(this).attr('data-title');
+				$(this).attr('title', originalTitle);
+				$('#tooltip').css('display', 'none');
+
+				this.style.cursor = 'default';
+			}
+		);
+
+		// 更新工具提示的位置
+		$('[title]').mousemove(function(event){
+			$('#tooltip').css({
+				top: event.pageY + 10 + 'px',
+				left: event.pageX + 10 + 'px'
+			});
+		});
+    });
 </script>
