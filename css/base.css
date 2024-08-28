@@ -195,7 +195,7 @@ section{
 .custom-tooltip {
 	display: none;
 	position: absolute;
-	background-color: #333;
+	background-color: black;
 	color: #fff;
 	padding: 5px;
 	border-radius: 5px;
