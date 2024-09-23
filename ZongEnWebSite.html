@@ -74,6 +74,11 @@
             background-color:gainsboro ;
         }
 
+        footer{
+            grid-column: span 2;
+            font-size: x-small;
+        }
+
         section{
             margin: auto;
             width: 100%;
@@ -104,7 +109,7 @@
             display: grid;
             width: 80%;
             grid-template-columns: 20% 80%;
-            grid-template-rows: 95%;
+            /* grid-template-rows: 95%; */
             min-height: 97vh;
         }
 
@@ -185,6 +190,29 @@
 	margin-right: .5vw;
 }
 
+/* Work Experience */
+.experience_content_p{
+	background-color: rgb(224, 224, 224);
+	border-radius: 5px;
+	margin: 1% !important;
+	padding: 2%;
+	width: 5%;
+    line-height: initial !important;
+    color:initial !important ;
+    text-align: center;
+    box-shadow: 2px 2px 4px rgba(47, 45, 45, 0.458);
+ }
+ .experience_content_span{
+	background-color: rgb(224, 224, 224);
+	border-radius: 5px;
+	margin: 1% !important;
+	padding: 2%;
+	width: 95%;
+	text-align: left;
+    line-height: initial !important;
+    box-shadow: 2px 2px 4px rgba(47, 45, 45, 0.458);
+ }
+
         /* 定義您的媒體查詢以進行 RWD */
         @media only screen and (max-width: 600px) {
             .container{
@@ -205,6 +233,10 @@
                 overflow: auto;
                 height: 95vh;
             }
+
+            #WorkExperience img{
+                display: none;
+            }
         }
     </style>
     <style>
@@ -224,8 +256,18 @@
   width: 50vw;
 }
 
+.timeline-item2 {
+  position: relative;
+  margin-bottom: 20px;
+  padding-left: 20px;
+  width: 50vw;
+  display: grid;
+  grid-template-columns: 15% 85%;
+  gap: 1%;
+}
+
 /* Timeline 節點 */
-.timeline-item::before {
+.timeline-item::before ,.timeline-item2::before {
   content: '';
   position: absolute;
   left: -12.5px;
@@ -289,7 +331,7 @@
         </aside>
         <main>
 
-            <section id="Information" style="display:none;">
+            <section id="Information">
                 <h2># Information</h2>
                 <h1>ZongEn Tsai 蔡宗恩</h1>
                 <h4><span id="sp_Age"></span>歲 | 嘉義人 | 碩士 | 3 ~ 4 年工作經驗</h4>
@@ -352,11 +394,46 @@
                 </article>
             </section>
 
-            <section id="WorkExperience" >
+            <section id="WorkExperience" style="display:none;">
                 <h2># Work Experience</h2>
-                <div>
-                    
-                </div>
+                <div class="timeline">
+                    <div class="timeline-item2">
+                      <div class="timeline-content" style="height: fit-content;">
+                        <figure style="margin: auto;">
+                            <img src="img/kmu-logo.jpg" style="height:5vh;" />
+                            <figcaption>高雄醫學大學</figcaption>
+                        </figure>
+                      </div>
+                      <div class="timeline-content" style="text-align: left;">
+                        <h4 style="color: gray;">小兒神經科 / 研究助理 / 2019/09~2020/08 (1年)</h4>
+                        <h3>EEG腦電圖生醫數據 處理 與 分析</h3>
+                        <div class="experience_content" style="font-size:medium;">
+							<div class="horizontal_layout jc_normal"><p class="experience_content_p">處理</p><span class="experience_content_span">腦電圖濾波、去除雜訊、波型標記 (Matlab)</span></div>
+							<div class="horizontal_layout jc_normal"><p class="experience_content_p">分析</p><span class="experience_content_span">運用機器學習建模、調參、分類器、分析 (R)</span></div>
+							<div class="horizontal_layout jc_normal"><p class="experience_content_p">自動</p><span class="experience_content_span">開發程式化前處理流程 (eeglab-stylized)</span></div>
+						</div>
+                      </div>
+                    </div>
+
+                    <div class="timeline-item2">
+                      <div class="timeline-content" style="height: fit-content;">
+                        <figure style="margin: auto;">
+                            <img src="img/auo-logo.png" style="height:3.5vh;" />
+                            <figcaption>友達光電</figcaption>
+                        </figure>
+                      </div>
+                      <div class="timeline-content" style="text-align: left;">
+                        <h4 style="color: gray;">製造部 / 智慧製造工程師 / 2020/09~迄今 (4年+)</h4>
+                        <h3>資訊整合、程式自動化、數據分析、視覺化</h3>
+                        <div class="experience_content" style="font-size:medium;">
+                            <div class="horizontal_layout jc_normal"><p class="experience_content_p" style="margin: 0 .5vw .5vh 0;">整合</p><span class="experience_content_span" style="line-height: normal;margin: 0 .5vw .5vh 0;">製造整合平台、便捷式 MES 操作平台、機台生產資訊串接 (APS.NET C#、SQL)</span></div>
+                            <div class="horizontal_layout jc_normal"><p class="experience_content_p" style="margin: 0 .5vw .5vh 0;">自動</p><span class="experience_content_span" style="line-height: normal;margin: 0 .5vw .5vh 0;">全自動生產、機器人流程自動化 (Python Selenium、RPA UiPath)</span></div>
+                            <div class="horizontal_layout jc_normal"><p class="experience_content_p" style="margin: 0 .5vw .5vh 0;">分析</p><span class="experience_content_span" style="line-height: normal;margin: 0 .5vw .5vh 0;">Cycle Time 解構、Takt Time 三階分析、WIP 檢測 (C#、R)</span></div>
+                            <div class="horizontal_layout jc_normal"><p class="experience_content_p" style="margin: 0 .5vw .5vh 0;">視覺</p><span class="experience_content_span" style="line-height: normal;margin: 0 .5vw .5vh 0;">前端資料視覺化 (HTML、HighCharts、ggplot2、Tableau)</span></div>
+                        </div>	
+                      </div>
+                    </div>
+                  </div>
             </section>
 
             <!-- CSS待整理 -->
@@ -492,9 +569,9 @@
                 </table> -->
             </section>
         </main>
-        <footer>
-            <p>&copy; 2024 Your Company. All rights reserved.</p>
-        </footer>
+        <!-- <footer>
+            <p>Contact Me : <a href="mailto:st901130@gmail.com">st901130@gmail.com</a> / 為確保網頁瀏覽體驗，建議最佳解析度為 1920 x 1080</p>
+        </footer> -->
     </div>
 
     <div class="custom-tooltip" id="tooltip"></div>
