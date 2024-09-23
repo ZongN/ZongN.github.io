@@ -9,8 +9,8 @@
 	overflow-x:hidden;
  }
  nav{
-	height:12vh;
-	width: 100vw;
+	height:12%;
+	width: 100%;
 	position: fixed;
 	display:flex;
 	justify-content: center;
@@ -19,6 +19,17 @@
 	background-color:black;
 	z-index:100;
  }
+
+ @media (min-width: 601px) {
+
+}
+
+@media (max-width: 600px) {
+	nav{
+		flex-direction: row;
+	}
+}
+
  nav span{
 	margin:0 1vw 0 1vw;
 	text-align:center;
