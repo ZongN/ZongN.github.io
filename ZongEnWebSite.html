@@ -112,7 +112,12 @@
             /* grid-template-rows: 95%; */
             min-height: 97vh;
         }
-
+        .project-block{
+          margin:auto;
+          display:grid;
+          grid-template-columns: 40% 60%;
+          align-items: center;
+        }
         #Certificate img{
             border: .1px solid;
             box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15) !important;
@@ -188,6 +193,20 @@
 	width:16vw;
 	border-radius:.3vw;
 	margin-right: .5vw;
+}
+#ProjectContent{
+  display:grid;
+  gap: .5vh;
+  margin:auto;
+  width:70%;
+  height: 80vh;
+  overflow: auto;
+  user-select: none; /* 禁止文字選取 */
+  -ms-overflow-style: none;  /* 隱藏 IE 和 Edge 的滾動條 */
+  scrollbar-width: none;  /* 隱藏 Firefox 的滾動條 */
+}
+#ProjectContent::-webkit-scrollbar {
+  display: none; /* 隱藏 Chrome 和 Safari 的滾動條 */
 }
 
 /* Work Experience */
@@ -338,8 +357,8 @@
                 <article>
                     <p>2020 年迄今任職於 <span>友達光電</span>，擔任製造部 <span>智慧製造工程師</span><sub>(全端)</sub></p>
                     <p>擁有四年以上的 <span>工廠端開發經驗</span>，具第一線數據串接與分析 <span>實戰經驗</span>。</p>
-                    <p><span>多能工</span> 與 <span>解決問題的能力</span> 深受肯定，<span>獲職等晉升</span> 與 連續 <span>三年久任合約</span> <sub title="連續三年 : 2023、2024、2025">註</sub>。</p>
-                    <p>個人特質 <span>技能活用</span> <sub title="靈活使用自身技能，達成任務目標。<br/>組合有限的資源，以組合拳的型式完成任務。">註</sub>、<span>多能工</span> <sub title="具備 快速學習 與 適應 的能力，可執行不同類型的任務。<br/>於組織中，負責 開發、需求訪談、協調、報告、撰寫等任務">註</sub>、<span>解決問題能力強</span> <sub title="樂於直面問題、拆解問題並各個擊破。<br/>">註</sub>、獨立性佳、自我要求高。</p>
+                    <p><span>工作態度</span> 與 <span>工作能力</span> 深受主管肯定，<span>獲職等晉升</span> 與 連續 <span>三年久任合約</span> <sub title="連續三年 : 2023、2024、2025">註</sub>。</p>
+                    <p>個人特質 <span>想法靈活</span>、<span>技能活用</span> <sub title="靈活使用自身技能，達成任務目標。<br/>組合有限的資源，以組合拳的型式完成任務。">註</sub>、<span>多能工</span> <sub title="具備 快速學習 與 適應 的能力，可執行不同類型的任務。<br/>於組織中，負責 開發、需求訪談、協調、報告、撰寫等任務">註</sub>、<span>解決問題能力</span> <sub title="樂於直面問題、拆解問題並各個擊破。<br/>">註</sub>、獨立性佳、自我要求高。</p>
                 </article>
                 <div>
                     <img src="https://img.shields.io/badge/-全端開發-rgb(255,51,153)" />
@@ -440,80 +459,92 @@
             <!-- CSS待整理 -->
             <section id="Project" style="display:none;">
                 <h2># Project</h2>
-                <table cellpadding="4" style="margin: auto;width: 70%;">
-                    <tr>
-                        <td><img id="p-a-opi-p" onclick="onclick_img_viewer('p-a-opi-p')" src="img/project-advance-opi-platform.png" class="project-img" /></td>
-                        <td style="text-align: left;">
-                            <h3>進階 OPI 操作平台</h3>
-                            <div>
-                                <img src="https://img.shields.io/badge/ASP.NET-C%23-brightgreen" />
-                                <img src="https://img.shields.io/badge/-資訊整合-orange" />
-                                <img src="https://img.shields.io/badge/-前端開發-rgb(255,51,153)" />
-                                <img src="https://img.shields.io/badge/-Web%20Service-blue" />
-                                <img src="https://img.shields.io/badge/-UI/UX-orange" />
-                            </div>
-                            <span>
-                                由使用者為出發點所開發的生產操作(OPI)介面。採用<font>分頁式架構</font>，整合執行前所需各種資訊。
-                                平台包含生產資訊查找、執行紀錄留存，並<font>大量使用CSS與AJAX技術優化UI設計與UX體驗</font>。
-                                平台上線迄今，瀏覽人次<font>超過200+</font>，透過平台執行指令數<font>超過10,000+筆</font>。
-                            </span>
-                        </td>
-                    </tr>
+                <div id="ProjectContent">
+                  <div class="project-block">
+                    <div><img id="p-a-opi-p" onclick="onclick_img_viewer(this)" src="img/project-advance-opi-platform.png" class="project-img" /></div>
+                    <div style="text-align: left;">
+                        <h3>進階 OPI 操作平台</h3>
+                        <div>
+                            <img src="https://img.shields.io/badge/ASP.NET-C%23-brightgreen" />
+                            <img src="https://img.shields.io/badge/-資訊整合-orange" />
+                            <img src="https://img.shields.io/badge/-前端開發-rgb(255,51,153)" />
+                            <img src="https://img.shields.io/badge/-Web%20Service-blue" />
+                            <img src="https://img.shields.io/badge/-UI/UX-orange" />
+                        </div>
+                        <span>
+                            由使用者為出發點所開發的生產操作(OPI)介面。採用<font>分頁式架構</font>，整合執行前所需各種資訊。
+                            平台包含生產資訊查找、執行紀錄留存，並<font>大量使用 Css 與 Ajax 技術優化UI設計與UX體驗</font>。
+                            平台上線迄今，瀏覽人次<font>超過200+</font>，透過平台執行指令數<font>超過10,000+筆</font>。
+                        </span>
+                    </div>
+                  </div>
+                  <div class="project-block">
+                    <div><img id="p-s-opi" onclick="onclick_img_viewer(this)" src="img/project-selenium-opi.png" class="project-img" /></div>
+                    <div style="text-align: left;">
+                        <h3>生產自動化</h3>
+                        <div>
+                            <img src="https://img.shields.io/badge/Python-3.8.0-rgb(136,0,255)" />
+                            <img src="https://img.shields.io/badge/Selenium-4.8.0-orange" />
+                            <img src="https://img.shields.io/badge/IE Browser-9.0-rgb(255,255,56)" />
+                            <img src="https://img.shields.io/badge/IE Driver-2010-rgb(255,66,255)" />
+                        </div>
+                        <span>
+                            利用Python Selenium控制OPI Web介面，取代人員作業。透過程式自動化Model轉換作業，<font>取代原步驟24步作業</font>完成轉換。
+                            程式步驟歷程包含開啟瀏覽器、選擇、輸入、點擊、懸停、快捷鍵、表格查找、畫面比對等。
+                            <font>終端透過Web介面</font>，讓使用者開關程式、程式情況、執行結果。
+                        </span>
+                    </div>
+                  </div>
+                  <div class="project-block">
+                    <div><img id="p-ct-as" onclick="onclick_img_viewer(this)" src="img/project-cycletime-analysis.png" class="project-img"/></div>
+                    <div style="text-align: left;">
+                        <h3>生產數據分析</h3>
+                        <div>
+                          <img src="https://img.shields.io/badge/ASP.NET-C%23-brightgreen" />
+                          <img src="https://img.shields.io/badge/Console-C%23-green" />
+                          <img src="https://img.shields.io/badge/SSMS-2016-blue" />
+                          <img src="https://img.shields.io/badge/-前端開發-rgb(255,51,153)" />
+                          <img src="https://img.shields.io/badge/HighCharts-8.2.2-rgb(255,255,56)" />
+                        </div>
+                        <span>
+                            階層式生產數據分析。依據產品、模型、製程不同維度進行剖析，並解構其 Cycle Time 的組成結構 Procsee、Wait、Hold Time...等，並利用<font>直觀的視覺化呈現</font>，
+                            直指異常製程道別。<font>發覺生產瓶頸</font>、<font>輔助生產決策</font>、<font>挖掘真因</font>。
+                        </span>
+                    </div>
+                </div>
+                  <div class="project-block">
+                    <div><img id="p-ct-as" onclick="onclick_img_viewer(this)" src="img/project-agv-interface.png" class="project-img"/></div>
+                    <div style="text-align: left;">
+                        <h3>AGV 無人車搬送系統介面</h3>
+                        <div>
+                          <img src="https://img.shields.io/badge/ASP.NET-C%23-brightgreen" />
+                          <img src="https://img.shields.io/badge/-Web%20Service-blue" />
+                          <img src="https://img.shields.io/badge/-前端開發-rgb(255,51,153)" />
+                          <img src="https://img.shields.io/badge/-UI/UX-orange" />
+                          <img src="https://img.shields.io/badge/-Ajax-rgb(136, 0, 255)" />
+                        </div>
+                        <span>
+                            於 ASP.NET Web 框架中，<font>利用前端 Css 建置 AGV 地圖 Layout</font> ，<font>並透過 Web Service 與 Ajax 實現異步更新</font>。而經<font>結構化的路徑點位</font>可由使用者自行維護。
+                            系統介面具體功能包含 : 基礎派送、當前位置與即時狀態、派車防呆卡控、自動回充判斷、後台數據分析 (AGV 稼動率)。
+                        </span>
+                    </div>
+                  </div>                
 
-                    <tr>
-                        <td><img id="p-s-opi" onclick="onclick_img_viewer('p-s-opi')" src="img/project-selenium-opi.png" class="project-img" /></td>
-                        <td style="text-align: left;">
-                            <h3>生產自動化</h3>
-                            <div>
-                                <img src="https://img.shields.io/badge/Python-3.8.0-rgb(136,0,255)" />
-                                <img src="https://img.shields.io/badge/Selenium-4.8.0-orange" />
-                                <img src="https://img.shields.io/badge/IE Browser-9.0-rgb(255,255,56)" />
-                                <img src="https://img.shields.io/badge/IE Driver-2010-rgb(255,66,255)" />
-                            </div>
-                            <span>
-                                利用Python Selenium控制OPI Web介面，取代人員作業。透過程式自動化Model轉換作業，<font>取代原步驟24步作業</font>完成轉換。
-                                程式步驟歷程包含開啟瀏覽器、選擇、輸入、點擊、懸停、快捷鍵、表格查找、畫面比對等。
-                                <font>終端透過Web介面</font>，讓使用者開關程式、程式情況、執行結果。
-                            </span>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td><img id="p-wssh-t-ws" onclick="onclick_img_viewer('p-wssh-t-ws')" src="img/project-webscreenshot-to-webservice.png" class="project-img" /></td>
-                        <td style="text-align: left;">
-                            <h3>生產報表轉發架構</h3>
-                            <div>
-                                <img src="https://img.shields.io/badge/ASP.NET-C%23-brightgreen" />
-                                <img src="https://img.shields.io/badge/JS-Html2canvas-red" />
-                                <img src="https://img.shields.io/badge/Console-C%23-green" />
-                            </div>
-                            <span>
-                                運用<font>前端 + 後端實現報表(Web)截圖並轉發行動裝置</font>。利用 Javascript Html2canvas 完成網頁截圖。
-                                透過背景 Console 主控台程式監控併透過 Web Service 發報。將廠內生產報表無痛接軌行動裝置，且<font>適用所有 Html 網頁報表。</font>
-                            </span>
-                        </td>
-                    </tr>
-
-                    
-                    <tr>
-                        <td><img id="p-ct-as" onclick="onclick_img_viewer('p-ct-as')" src="img/project-cycletime-analysis.png" class="project-img"/></td>
-                        <td style="text-align: left;">
-                            <h3>生產數據分析</h3>
-                            <div>
-								<img src="https://img.shields.io/badge/ASP.NET-C%23-brightgreen" />
-								<img src="https://img.shields.io/badge/Console-C%23-green" />
-								<img src="https://img.shields.io/badge/SSMS-2016-blue" />
-								<img src="https://img.shields.io/badge/-前端開發-rgb(255,51,153)" />
-								<img src="https://img.shields.io/badge/HighCharts-8.2.2-rgb(255,255,56)" />
-                            </div>
-                            <span>
-                                階層式生產數據分析。依據產品、模型、製程不同維度進行剖析，並解構其 Cycle Time 的組成結構 Procsee、Wait、Hold Time...等，並利用<font>直觀的視覺化呈現</font>，
-                                直指異常製程道別。<font>發覺生產瓶頸</font>、<font>輔助生產決策</font>、<font>挖掘真因</font>。
-                            </span>
-                        </td>
-                    </tr>
-
-                </table>
+                  <div class="project-block">
+                    <div><img id="p-wssh-t-ws" onclick="onclick_img_viewer(this)" src="img/project-webscreenshot-to-webservice.png" class="project-img" /></div>
+                    <div style="text-align: left;">
+                        <h3>生產報表轉發架構</h3>
+                        <div>
+                            <img src="https://img.shields.io/badge/ASP.NET-C%23-brightgreen" />
+                            <img src="https://img.shields.io/badge/JS-Html2canvas-red" />
+                            <img src="https://img.shields.io/badge/Console-C%23-green" />
+                        </div>
+                        <span>
+                            運用<font>前端 + 後端實現報表(Web)截圖並轉發行動裝置</font>。利用 Javascript Html2canvas 完成網頁截圖。
+                            透過背景 Console 主控台程式監控併透過 Web Service 發報。將廠內生產報表無痛接軌行動裝置，且<font>適用所有 Html 網頁報表。</font>
+                        </span>
+                    </div>
+                </div>    
             </section>
 
             <!-- RWD 待調整 -->
@@ -540,34 +571,18 @@
                 <h2># Certificate</h2>
                 <div class="Certificate_Gallery">
                     <figure>
-                        <img id="iPAS_IOT" onclick="onclick_img_viewer('iPAS_IOT')" src="img/iPAS證照_物聯網.jpg"/>
+                        <img id="iPAS_IOT" onclick="onclick_img_viewer(this)" src="img/iPAS證照_物聯網.jpg"/>
                         <figcaption>iPAS 經濟部人才鑑定 / 物聯網應用</figcaption>
                     </figure>
                     <figure>
-                        <img id="iPAS_SEC" onclick="onclick_img_viewer('iPAS_SEC')" src="img/iPAS證照_資安.jpg"/>
+                        <img id="iPAS_SEC" onclick="onclick_img_viewer(this)" src="img/iPAS證照_資安.jpg"/>
                         <figcaption>iPAS 經濟部人才鑑定 / 資訊安全</figcaption>
                     </figure>
                     <figure>
-                        <img id="GS1_IOT" onclick="onclick_img_viewer('GS1_IOT')" src="img/GS1證照_物聯網.jpg"/>
+                        <img id="GS1_IOT" onclick="onclick_img_viewer(this)" src="img/GS1證照_物聯網.jpg"/>
                         <figcaption>GS1 Taiwan / EPCIE 物聯網工程師認證</figcaption>
                     </figure>
                 </div>
-                <!-- <table cellpadding="5">
-                    <thead style="color:gray;">
-                        <tr>
-                            <td>iPAS 經濟部人才鑑定 / 物聯網應用</td>
-                            <td>iPAS 經濟部人才鑑定 / 資訊安全</td>
-                            <td>GS1 Taiwan / EPCIE 物聯網工程師認證</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><img id="iPAS_IOT" onclick="onclick_img_viewer('iPAS_IOT')" src="img/iPAS證照_物聯網.jpg" style="height: 40vh;" /></td>
-                            <td><img id="iPAS_SEC" onclick="onclick_img_viewer('iPAS_SEC')" src="img/iPAS證照_資安.jpg" style="height: 40vh;" /></td>
-                            <td><img id="GS1_IOT" onclick="onclick_img_viewer('GS1_IOT')" src="img/GS1證照_物聯網.jpg" style="height: 40vh;" /></td>
-                        </tr>
-                    </tbody>
-                </table> -->
             </section>
         </main>
         <!-- <footer>
@@ -580,32 +595,13 @@
 </html>
 <script>
 
-	function onclick_img_viewer(index_Id)
+	function onclick_img_viewer(img)
 	{
-		var indexviewer = new Viewer(document.getElementById(index_Id), {
+		var indexviewer = new Viewer(img, {
 			navbar: false,
-			toolbar: {
-				zoomIn: 4,
-				zoomOut: 4,
-				oneToOne: 4,
-				reset: 4,
-				prev: 4,
-				play: {
-					show: 4,
-					size: 'large',
-				},
-				next: 4,
-				rotateLeft: 4,
-				rotateRight: 4,
-				flipHorizontal: 4,
-				flipVertical: 4,
-			},
-			filter(image) {
-				return image.complete;
-			}
+			toolbar: false,
+      title:false
 		});
-
-		indexviewer.show(index_Id);
 	}
 
 	function page_previous_and_next(){
@@ -678,7 +674,8 @@
 	function load_event(){
 		page_previous_and_next();		
 		how_old_am_i();
-        addHover(document.getElementsByName('aside_li_group')[0]);
+    addHover(document.getElementsByName('aside_li_group')[0]);
+    project_scroll();
 	}
 
     function asid_li_onmouseover(element){
@@ -711,6 +708,39 @@
 
     function removeHover(element) {
         element.classList.remove('aside_li_hover');
+    }
+
+    function project_scroll(){
+      let container = document.getElementById("ProjectContent");
+        let isDown = false;
+        let startY;
+        let scrollTop;
+
+        container.addEventListener("mousedown", (e) => {
+            isDown = true;
+            container.classList.add("active");
+            container.style.cursor = "grabbing"; // 改變滑鼠樣式為手掌
+            startY = e.pageY - container.offsetTop;
+            scrollTop = container.scrollTop;
+        });
+
+        container.addEventListener("mouseleave", () => {
+            isDown = false;
+            container.style.cursor = "grab"; // 恢復原本游標
+        });
+
+        container.addEventListener("mouseup", () => {
+            isDown = false;
+            container.style.cursor = "grab"; // 恢復原本游標
+        });
+
+        container.addEventListener("mousemove", (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const y = e.pageY - container.offsetTop;
+            const walk = (y - startY) * 1.2; // 滾動速度倍數
+            container.scrollTop = scrollTop - walk;
+        });
     }
 </script>
 <script>
