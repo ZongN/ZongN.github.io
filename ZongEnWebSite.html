@@ -1,682 +1,658 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <title>Person Brand WebSite - ZongEn</title>
-    <link rel="icon" type="image/x-icon" href="img/z-logo.png">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+      <title>Person Brand WebSite - ZongEn</title>
+      <link rel="icon" type="image/x-icon" href="img/z-logo.png">
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <!-- highcharts -->
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/heatmap.js"></script>
-    <script src="https://code.highcharts.com/modules/treemap.js"></script>
-    
-    <!-- viewer -->
-    <script src="script/viewer.js"></script>
-    <script src="script/viewer.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/viewer.min.css">
-
-    <style>
+      <!-- highcharts -->
+      <script src="https://code.highcharts.com/highcharts.js"></script>
+      <script src="https://code.highcharts.com/modules/heatmap.js"></script>
+      <script src="https://code.highcharts.com/modules/treemap.js"></script>
+      
+      <!-- viewer -->
+      <script src="script/viewer.js"></script>
+      <script src="script/viewer.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="css/viewer.min.css">
+      <style>
         body {
-            display:flex;
-            height: 100vh; 
-            justify-content: center;
-            margin: auto; 
-            overflow: hidden;
-            background-color:#F0F0F0;
-            font-family:'Mabry Pro';        
-            text-align:center;
+          display: flex;
+          height: 100vh;
+          justify-content: center;
+          margin: auto;
+          overflow: hidden;
+          background-color: #F0F0F0;
+          font-family: 'Mabry Pro';
+          text-align: center;
         }
-        
         aside {
-            display: grid;
-            grid-template-columns: 1fr; /* 一列佈局 */
-            grid-template-rows: 10vh 12vh 5vh 5vh; /* 設定每一行的高度 */
-            justify-content: center;
-            align-items: center;
-            justify-items: center;
-            align-content: baseline;
-            color: #F0F0F0;
-            background-color:black;            
+          display: grid;
+          grid-template-columns: 1fr;
+          /* 一列佈局*/
+          grid-template-rows: 10vh 12vh 5vh 5vh;
+          /* 設定每一行的高度*/
+          justify-content: center;
+          align-items: center;
+          justify-items: center;
+          align-content: baseline;
+          color: #F0F0F0;
+          background-color: black;
         }
-
-        aside ul{
-            width: 100%;
-            margin: 1%;
-            padding: 0;
-            list-style: none;            
+        aside ul {
+          width: 100%;
+          margin: 1%;
+          padding: 0;
+          list-style: none;
         }
-
         aside ul > li {
-            width: 100%;
-            margin: 0;
-            padding: 5% 0;
-            /*過度效果*/
-            background: linear-gradient(to right, gainsboro 100%, black 0%);
-            background-size: 0% 100%;
-            background-position: left;
-            background-repeat: no-repeat;
-            transition: background-size 0.3s ease;
+          width: 100%;
+          margin: 0;
+          padding: 5% 0;
+          /*過度效果*/
+          background: linear-gradient(to right, gainsboro 100%, black 0%);
+          background-size: 0% 100%;
+          background-position: left;
+          background-repeat: no-repeat;
+          transition: background-size 0.3s ease;
         }
-
-        aside ul > li:hover,.aside_li_hover{
-            color: black;
-            background-size: 100% 100%;
-            cursor: pointer;
+        aside ul > li:hover,.aside_li_hover {
+          color: black;
+          background-size: 100% 100%;
+          cursor: pointer;
         }
-
         main {
-            margin: 0;
-            display: grid;
-            justify-content: center;
-            align-items: center;
-            background-color:gainsboro ;
+          margin: 0;
+          display: grid;
+          justify-content: center;
+          align-items: center;
+          background-color: gainsboro ;
         }
-
-        footer{
-            grid-column: span 2;
-            font-size: x-small;
+        footer {
+          grid-column: span 2;
+          font-size: x-small;
         }
-
-        section{
-            margin: auto;
-            width: 100%;
+        section {
+          margin: auto;
+          width: 100%;
         }
-
-        article span{
-            font-weight:bold;
-            display: inline-block;;
-            line-height: .5;
-            background:rgb(255, 252, 56,.8);
-            background-size:100% 50%;
-            background-position: center;
-        }	
-
+        article span {
+          font-weight: bold;
+          display: inline-block;
+          ; line-height: .5;
+          background: rgb(255, 252, 56,.8);
+          background-size: 100% 50%;
+          background-position: center;
+        }
         .custom-tooltip {
-            display: none;
-            position: absolute;
-            background-color: black;
-            color: #fff;
-            padding: 5px;
-            border-radius: 5px;
-            font-size: 14px;
-            text-align: left;
-            z-index: 99;
+          display: none;
+          position: absolute;
+          background-color: black;
+          color: #fff;
+          padding: 5px;
+          border-radius: 5px;
+          font-size: 14px;
+          text-align: left;
+          z-index: 99;
         }
-
         .container {
-            display: grid;
-            width: 80%;
-            grid-template-columns: 20% 80%;
-            /* grid-template-rows: 95%; */
-            min-height: 97vh;
+          display: grid;
+          width: 80%;
+          grid-template-columns: 20% 80%;
+          /* grid-template-rows: 95%;*/
+          min-height: 97vh;
         }
-        .project-block{
-          margin:auto;
-          display:grid;
+        .project-block {
+          margin: auto;
+          display: grid;
           grid-template-columns: 40% 60%;
           align-items: center;
         }
-        #Certificate img{
-            border: .1px solid;
-            box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15) !important;
-            height: 35vh;
-            transition: transform 0.5s;			
+        #Certificate img {
+          border: .1px solid;
+          box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15) !important;
+          height: 35vh;
+          transition: transform 0.5s;
         }
-        #Certificate figure > figcaption{
-            white-space: nowrap;
+        #Certificate figure > figcaption {
+          white-space: nowrap;
         }
-        #Certificate img:hover{
-            transform: scale(1.2);
+        #Certificate img:hover {
+          transform: scale(1.2);
         }
-        .Certificate_Gallery{
-            display: grid;grid-template-columns: 28vh 28vh 52vh;
-            align-items: center;
-            justify-items: center;
-            align-content: center;
-            justify-content: center;
+        .Certificate_Gallery {
+          display: grid;
+          grid-template-columns: 28vh 28vh 52vh;
+          align-items: center;
+          justify-items: center;
+          align-content: center;
+          justify-content: center;
         }
-        .horizontal_layout{
-	display:flex;
-	justify-content: center;
-	align-items: center;
- }
-
-
-/*卡片效果*/
-.card{
-	position: relative;
-	display: flex;
-	flex-direction: column;
-	width: 30vw;
-	text-align: center;
-	word-wrap: break-word;
-	background-color: #fff;
-	background-clip: border-box;
-	border: 1px solid #e3e6f0;
-	box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15) !important;
-	border-radius: 0.25rem;
-	margin: 0px 0.5% 0px 0.5%;
-}
-.card_Title{
-    text-align: center;
-    padding-bottom: 1rem !important;
-    padding-top: 1rem !important;
-    background-color: #f8f9fc;
-    border-bottom: 1px solid #e3e6f0;
-    font-size: large;
-    font-weight: bold;
-    color:#4F525F;
-}
-.card_Body{
-	margin: 1%;
-}
-
-.card_horizontal{
-	margin: 1vh 1vh;
-	padding: 1vh;
-    width: 36vw;
-    height: 30vh;
-    background-color: white;
-    border-radius: .5vw;
-    box-shadow: 0 0.15rem 1.75rem 0 rgba(58,59,69,.15);
-}
-
-#Project font{
-	color: #2894FF;
- }
- #Project span{
-	line-height: 1.5;
- }
-.project-img{
-	width:16vw;
-	border-radius:.3vw;
-	margin-right: .5vw;
-}
-#ProjectContent{
-  display:grid;
-  gap: .5vh;
-  margin:auto;
-  width:70%;
-  height: 80vh;
-  overflow: auto;
-  user-select: none; /* 禁止文字選取 */
-  -ms-overflow-style: none;  /* 隱藏 IE 和 Edge 的滾動條 */
-  scrollbar-width: none;  /* 隱藏 Firefox 的滾動條 */
-}
-#ProjectContent::-webkit-scrollbar {
-  display: none; /* 隱藏 Chrome 和 Safari 的滾動條 */
-}
-
-/* Work Experience */
-.experience_content_p{
-	background-color: rgb(224, 224, 224);
-	border-radius: 5px;
-	margin: 1% !important;
-	padding: 2%;
-	width: 5%;
-    line-height: initial !important;
-    color:initial !important ;
-    text-align: center;
-    box-shadow: 2px 2px 4px rgba(47, 45, 45, 0.458);
- }
- .experience_content_span{
-	background-color: rgb(224, 224, 224);
-	border-radius: 5px;
-	margin: 1% !important;
-	padding: 2%;
-	width: 95%;
-	text-align: left;
-    line-height: initial !important;
-    box-shadow: 2px 2px 4px rgba(47, 45, 45, 0.458);
- }
-
-        /* 定義您的媒體查詢以進行 RWD */
-        @media only screen and (max-width: 600px) {
-            .container{
-                width: 100%;
-                font-size: small;
-            }
-            .sidenav {
-                background-color:lightskyblue;
-            }
-            
-            .Certificate_Gallery{
-                transform: scale(.5);
-                grid-template-columns: 1fr;
-                grid-template-rows: 1fr 1fr 1fr;
-            }
-
-            #Project{
-                overflow: auto;
-                height: 95vh;
-            }
-
-            #WorkExperience img{
-                display: none;
-            }
+        .horizontal_layout {
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
-    </style>
-    <style>
-        /* Timeline 基礎樣式 */
-.timeline {
-  position: relative;
-  margin: 20px 0;
-  padding-left: 0px; /* 為了讓 timeline 的線顯示在左邊 */
-  border-left: 2px solid #ccc; /* 左側的垂直線 */
-}
-
-/* Timeline item 樣式 */
-.timeline-item {
-  position: relative;
-  margin-bottom: 20px;
-  padding-left: 20px; /* 為了讓節點和內容之間有距離 */
-  width: 50vw;
-}
-
-.timeline-item2 {
-  position: relative;
-  margin-bottom: 20px;
-  padding-left: 20px;
-  width: 50vw;
-  display: grid;
-  grid-template-columns: 15% 85%;
-  gap: 1%;
-}
-
-/* Timeline 節點 */
-.timeline-item::before ,.timeline-item2::before {
-  content: '';
-  position: absolute;
-  left: -12.5px;
-  top: 5px;
-  width: 20px;
-  height: 20px;
-  background-color: #fff;
-  border: 2px solid #ccc;
-  border-radius: 50%; /* 圓形節點 */
-}
-
-/* Timeline 內容的樣式 */
-.timeline-content {
-  background-color: #f9f9f9;
-  padding: 20px 20px;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* Timeline 內容標題 */
-.timeline-content h3 {
-  margin: 0 0 5px;
-  font-size: 1.2em;
-}
-
-.timeline-content h4 {
-  margin: 5px 0 10px;
-  font-size: 1em;
-}
-
-/* Timeline 內容文字 */
-.timeline-content p {
-  margin: 0;
-  color: #555;
-  line-height: 2.8vh;
-}
-    </style>
-</head>
-<body onload="load_event();">
+        /*卡片效果*/
+          .card {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          width: 30vw;
+          text-align: center;
+          word-wrap: break-word;
+          background-color: #fff;
+          background-clip: border-box;
+          border: 1px solid #e3e6f0;
+          box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15) !important;
+          border-radius: 0.25rem;
+          margin: 0px 0.5% 0px 0.5%;
+        }
+        .card_Title {
+          text-align: center;
+          padding-bottom: 1rem !important;
+          padding-top: 1rem !important;
+          background-color: #f8f9fc;
+          border-bottom: 1px solid #e3e6f0;
+          font-size: large;
+          font-weight: bold;
+          color: #4F525F;
+        }
+        .card_Body {
+          margin: 1%;
+        }
+        .card_horizontal {
+          margin: 1vh 1vh;
+          padding: 1vh;
+          width: 36vw;
+          height: 30vh;
+          background-color: white;
+          border-radius: .5vw;
+          box-shadow: 0 0.15rem 1.75rem 0 rgba(58,59,69,.15);
+        }
+        #Project font {
+          color: #2894FF;
+        }
+        #Project span {
+          line-height: 1.5;
+        }
+        .project-img {
+          width: 16vw;
+          border-radius: .3vw;
+          margin-right: .5vw;
+        }
+        #ProjectContent {
+          display: grid;
+          gap: .5vh;
+          margin: auto;
+          width: 70%;
+          height: 80vh;
+          overflow: auto;
+          user-select: none;
+          /* 禁止文字選取*/
+          -ms-overflow-style: none;
+          /* 隱藏 IE 和 Edge 的滾動條*/
+          scrollbar-width: none;
+          /* 隱藏 Firefox 的滾動條*/	
+        }
+        #ProjectContent::-webkit-scrollbar {
+          display: none;
+        }
+        /* Work Experience*/
+        .experience_content_p {
+          background-color: rgb(224, 224, 224);
+          border-radius: 5px;
+          margin: 1% !important;
+          padding: 2%;
+          width: 5%;
+          line-height: initial !important;
+          color: initial !important ;
+          text-align: center;
+          box-shadow: 2px 2px 4px rgba(47, 45, 45, 0.458);
+        }
+        .experience_content_span {
+          background-color: rgb(224, 224, 224);
+          border-radius: 5px;
+          margin: 1% !important;
+          padding: 2%;
+          width: 95%;
+          text-align: left;
+          line-height: initial !important;
+          box-shadow: 2px 2px 4px rgba(47, 45, 45, 0.458);
+        }
+        .experience_content img {
+          vertical-align: bottom;
+        }
+        /* 定義您的媒體查詢以進行 RWD*/
+          @media only screen and (max-width: 600px) {
+          .container {
+          width: 100%;
+          font-size: small;
+        }
+        .sidenav {
+          background-color: lightskyblue;
+        }
+        .Certificate_Gallery {
+          transform: scale(.5);
+          grid-template-columns: 1fr;
+          grid-template-rows: 1fr 1fr 1fr;
+        }
+        #Project {
+          overflow: auto;
+          height: 95vh;
+        }
+        #WorkExperience img {
+          display: none;
+        }
+        } 
+        /* Timeline 基礎樣式*/
+          .timeline {
+          position: relative;
+          margin: 20px 0;
+          padding-left: 0px;
+          /* 為了讓 timeline 的線顯示在左邊*/
+          border-left: 2px solid #ccc;
+          /* 左側的垂直線*/
+          
+        }
+        /* Timeline item 樣式*/
+          .timeline-item {
+          position: relative;
+          margin-bottom: 20px;
+          padding-left: 20px;
+          /* 為了讓節點和內容之間有距離*/
+          width: 50vw;
+        }
+        .timeline-item2 {
+          position: relative;
+          margin-bottom: 20px;
+          padding-left: 20px;
+          width: 50vw;
+          display: grid;
+          grid-template-columns: 15% 85%;
+          gap: 1%;
+        }
+        /* Timeline 節點*/
+          .timeline-item::before ,.timeline-item2::before {
+          content: '';
+          position: absolute;
+          left: -12.5px;
+          top: 5px;
+          width: 20px;
+          height: 20px;
+          background-color: #fff;
+          border: 2px solid #ccc;
+          border-radius: 50%;
+          /* 圓形節點*/
+          
+        }
+        /* Timeline 內容的樣式*/
+          .timeline-content {
+          background-color: #f9f9f9;
+          padding: 20px 20px;
+          border-radius: 5px;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        /* Timeline 內容標題*/
+          .timeline-content h3 {
+          margin: 0 0 5px;
+          font-size: 1.2em;
+        }
+        .timeline-content h4 {
+          margin: 5px 0 10px;
+          font-size: 1em;
+        }
+        /* Timeline 內容文字*/
+          .timeline-content p {
+          margin: 0;
+          color: #555;
+          line-height: 2.8vh;
+        } 
+      </style>
+  </head>
+  <body onload="load_event();">
     <div class="container">
-        <aside>
-            <span>Full Stack Developer</span>
-            <img id="myself" src="img/myself.jpg" style="width:5vw;height:5vw;border-radius:5vw;background-size:cover;" />
-            <span>ZongEn Tsai 蔡宗恩</span>
-            <table style="margin: auto;">
-                <tr>
-                    <td><a href="https://github.com/ZongN" target="_blank"><img src="img/github-logo.png" style="width: 1.2vw;filter: invert(100%);"/></a></td>
-                    <td><a href="mailto:st901130@gmail.com" target="_blank"><img src="img/email.png" style="width: 1.2vw;filter: invert(100%);"/></a></td>
-                    <td><a href="https://www.linkedin.com/in/tsaizongen/" target="_blank"><img src="img/linkedin.png" style="width: 1.2vw;filter: invert(100%);"/></a></td>
-                </tr>
-            </table>   
-            <ul>
-                <li name="aside_li_group" onmouseover="asid_li_onmouseover(this);">Information</li>
-                <li name="aside_li_group" onmouseover="asid_li_onmouseover(this);">Education</li>
-                <li name="aside_li_group" onmouseover="asid_li_onmouseover(this);">Thesis</li>
-                <li name="aside_li_group" onmouseover="asid_li_onmouseover(this);">Work Experience</li>
-                <li name="aside_li_group" onmouseover="asid_li_onmouseover(this);">Project</li>
-                <li name="aside_li_group" onmouseover="asid_li_onmouseover(this);">Skills and Domain</li>
-                <li name="aside_li_group" onmouseover="asid_li_onmouseover(this);">Certificate</li>
-            </ul>  
-        </aside>
-        <main>
+      <aside>
+        <span>Full Stack Developer</span>
+        <img id="myself" src="img/myself.jpg" style="width:5vw;height:5vw;border-radius:5vw;background-size:cover;" />
+        <span>ZongEn Tsai 蔡宗恩</span>
+        <table style="margin: auto;">
+          <tr>
+            <td><a href="https://github.com/ZongN" target="_blank"><img src="img/github-logo.png" style="width: 1.2vw;filter: invert(100%);"/></a></td>
+            <td><a href="mailto:zongen.tsai@outlook.com" target="_blank"><img src="img/email.png" style="width: 1.2vw;filter: invert(100%);"/></a></td>
+            <td><a href="https://www.linkedin.com/in/tsaizongen/" target="_blank"><img src="img/linkedin.png" style="width: 1.2vw;filter: invert(100%);"/></a></td>
+          </tr>
+        </table>   
+        <ul>
+          <li name="aside_li_group" onmouseover="asid_li_onmouseover(this);">Information</li>
+          <li name="aside_li_group" onmouseover="asid_li_onmouseover(this);">Education</li>
+          <li name="aside_li_group" onmouseover="asid_li_onmouseover(this);">Thesis</li>
+          <li name="aside_li_group" onmouseover="asid_li_onmouseover(this);">Work Experience</li>
+          <li name="aside_li_group" onmouseover="asid_li_onmouseover(this);">Project</li>
+          <li name="aside_li_group" onmouseover="asid_li_onmouseover(this);">Skills and Domain</li>
+          <li name="aside_li_group" onmouseover="asid_li_onmouseover(this);">Certificate</li>
+        </ul>  
+      </aside>
+      <main>
+        <section id="Information">
+          <h2># Information</h2>
+          <h1>ZongEn Tsai 蔡宗恩</h1>
+          <h4><span id="sp_Age"></span>歲 | 嘉義人 | 碩士 | 4 ~ 5 年工作經驗</h4>
+          <article>
+              <p>2020 年迄今任職於 <span>友達光電</span>，擔任製造部 <span>智慧製造工程師</span><sub>(全端)</sub></p>
+              <p>擁有四年以上的 <span>工廠端開發經驗</span>，具第一線數據分析與整合 <span>實戰經驗</span>。</p>
+              <p><span>工作能力</span> 與 <span>工作態度</span> 深受主管肯定，<span>獲職等晉升</span> 與 連續 <span>三年久任合約</span> <sub title="連續三年 : 2023、2024、2025">註</sub>。</p>
+              <p>個人特質 <span>想法靈活</span>、<span>技能活用</span> <sub title="靈活使用自身技能，達成任務目標。<br/>組合有限的資源，以組合拳的型式完成任務。">註</sub>、<span>多能工</span> <sub title="具備 快速學習 與 適應 的能力，可執行不同類型的任務。<br/>於組織中，負責 開發、需求訪談、協調、報告、撰寫等任務">註</sub>、<span>解決問題能力</span> <sub title="樂於直面問題、拆解問題並各個擊破。<br/>">註</sub>、獨立性佳、自我要求高。</p>
+          </article>
+          <div>
+              <img src="https://img.shields.io/badge/-全端開發-rgb(255,51,153)" />
+              <td><img src="https://img.shields.io/badge/-HTML-rgb(255,255,56)" /></td>
+              <td><img src="https://img.shields.io/badge/-JavaScript-orange" /></td>
+              <img src="https://img.shields.io/badge/ASP.NET-C%23-brightgreen">
+              <img src="https://img.shields.io/badge/-Python-rgb(136,0,255)">
+              <img src="https://img.shields.io/badge/-SQL-rgb(0, 255, 255)">
+              <img src="https://img.shields.io/badge/-Machine Learning-rgb(0, 127, 255)" />
+              <img src="https://img.shields.io/badge/WinForm-C%23-brightgreen">                    
+              <img src="https://img.shields.io/badge/RPA-UiPath-rgb(250, 156, 25)">                    
+          </div>
+        </section>
 
-            <section id="Information">
-                <h2># Information</h2>
-                <h1>ZongEn Tsai 蔡宗恩</h1>
-                <h4><span id="sp_Age"></span>歲 | 嘉義人 | 碩士 | 4 ~ 5 年工作經驗</h4>
-                <article>
-                    <p>2020 年迄今任職於 <span>友達光電</span>，擔任製造部 <span>智慧製造工程師</span><sub>(全端)</sub></p>
-                    <p>擁有四年以上的 <span>工廠端開發經驗</span>，具第一線數據串接與分析 <span>實戰經驗</span>。</p>
-                    <p><span>工作態度</span> 與 <span>工作能力</span> 深受主管肯定，<span>獲職等晉升</span> 與 連續 <span>三年久任合約</span> <sub title="連續三年 : 2023、2024、2025">註</sub>。</p>
-                    <p>個人特質 <span>想法靈活</span>、<span>技能活用</span> <sub title="靈活使用自身技能，達成任務目標。<br/>組合有限的資源，以組合拳的型式完成任務。">註</sub>、<span>多能工</span> <sub title="具備 快速學習 與 適應 的能力，可執行不同類型的任務。<br/>於組織中，負責 開發、需求訪談、協調、報告、撰寫等任務">註</sub>、<span>解決問題能力</span> <sub title="樂於直面問題、拆解問題並各個擊破。<br/>">註</sub>、獨立性佳、自我要求高。</p>
-                </article>
-                <div>
-                    <img src="https://img.shields.io/badge/-全端開發-rgb(255,51,153)" />
-                    <td><img src="https://img.shields.io/badge/-HTML-rgb(255,255,56)" /></td>
-                    <td><img src="https://img.shields.io/badge/-JavaScript-orange" /></td>
-                    <img src="https://img.shields.io/badge/ASP.NET-C%23-brightgreen">
-                    <img src="https://img.shields.io/badge/-Python-rgb(136,0,255)">
-                    <img src="https://img.shields.io/badge/-SQL-rgb(0, 255, 255)">
-                    <img src="https://img.shields.io/badge/-Machine Learning-rgb(0, 127, 255)" />
-                    <img src="https://img.shields.io/badge/WinForm-C%23-brightgreen">                    
-                    <img src="https://img.shields.io/badge/RPA-UiPath-rgb(250, 156, 25)">                    
+        <section id="Education" style="display:none;">
+          <h2># Education</h2>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-content">
+                <h3>嘉義高中 </h3>
+                <p>2010/09 ~ 2013/06</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-content">
+                <h3>大學 / 義守大學 / 資訊工程學系</h3>
+                <p>2013/09 ~ 2017/06</p>
+                <h4>日月光實習計畫 / MES 實習生</h4>
+                <p>專責簡易程式開發、日常程式維護與程式測試、輔助工具開發。<br>期間開發一個基於雜湊驗證的代碼比對工具，用於正式環境與測試環境的代碼差異比對。</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-content">
+                <h3>研究所 / 義守大學 / 資訊工程所</h3>
+                <p>2017/09 ~ 2019/08</p>
+                <h4>中國鋼鐵研究計畫 / 研究助理</h4>
+                <p>任務包含數據處理、演算法程式開發並透過機器學習優化排程問題。<br>主要使用R語言與機器學習。結束前，程式已實際於該公司上線使用中。</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="Thesis" style="display:none;">
+          <h2># Thesis</h2>
+          <h2>一種改良式特徵挑選方法及其於分類分析之應用 <a href="https://hdl.handle.net/11296/54kf6b" target="_blank"><img src="img/link.png" style="width:2vh;"/></a></h2>
+          <p>An Improved Feature Selection Approach and Its Application on Classification Analysis</p>
+          <p>ZongEn Tsai<p>
+          <article style="margin: auto;width:65% ;text-align: justify;line-height: 3vh;">
+              本研究提出一種<span>特徵挑選方法</span>(Feature Selection)，是基於<span>最大訊息係數</span>(Maximal Information Coefficient , MIC)與<span>K中心分群法</span>(K-Medoid)的結合，藉由從大量的特徵中挑選出具代表性之特徵，並利用<span>機器學習</span>驗證本方法之成效。
+              首先，利用最大訊息係數計算每對特徵之間的相似度，以及每個特徵與類別之間的相似度。接著，透過K中心分群演算法將所有特徵分成K群，並由每群的特徵中挑選一個與類別之間具有最大訊息係數之特徵做為代表。
+              最後，可以獲得K個代表性特徵。為了驗證本方法之成效，實驗中考慮了<span>四個不同特性的分類資料集</span>(DataSet)與<span>四個分類器</span>(Classifier)，並與其他三種特徵挑選方法進行比較。
+              相較於其他特徵挑選方法，實驗結果顯示本方法在大多數資料集與分類器之組合條件下具有<span>較泛用的分類表現</span>。
+          </article>
+        </section>
+
+        <section id="WorkExperience" style="display:none;">
+          <h2># Work Experience</h2>
+            <div class="timeline">
+              <div class="timeline-item2">
+                <div class="timeline-content" style="height: fit-content;">
+                  <figure style="margin: auto;">
+                      <img src="img/kmu-logo.jpg" style="height:5vh;" />
+                      <figcaption>高雄醫學大學</figcaption>
+                  </figure>
                 </div>
-            </section>
-
-            <section id="Education" style="display:none;">
-                <h2># Education</h2>
-                <div class="timeline">
-                    <div class="timeline-item">
-                      <div class="timeline-content">
-                        <h3>嘉義高中 </h3>
-                        <p>2010/09 ~ 2013/06</p>
-                      </div>
-                    </div>
-                    <div class="timeline-item">
-                      <div class="timeline-content">
-                        <h3>大學 / 義守大學 / 資訊工程學系</h3>
-                        <p>2013/09 ~ 2017/06</p>
-                        <h4>日月光實習計畫 / MES 實習生</h4>
-                        <p>專責簡易程式開發、日常程式維護與程式測試、輔助工具開發。<br>期間開發一個基於雜湊驗證的代碼比對工具，用於正式環境與測試環境的代碼差異比對。</p>
-                      </div>
-                    </div>
-                    <div class="timeline-item">
-                      <div class="timeline-content">
-                        <h3>研究所 / 義守大學 / 資訊工程所</h3>
-                        <p>2017/09 ~ 2019/08</p>
-                        <h4>中國鋼鐵研究計畫 / 研究助理</h4>
-                        <p>任務包含數據處理、演算法程式開發並透過機器學習優化排程問題。<br>主要使用R語言與機器學習。結束前，程式已實際於該公司上線使用中。</p>
-                      </div>
-                    </div>
-                  </div>
-            </section>
-
-            <section id="Thesis" style="display:none;">
-                <h2># Thesis</h2>
-                <h2>一種改良式特徵挑選方法及其於分類分析之應用 <a href="https://hdl.handle.net/11296/54kf6b" target="_blank"><img src="img/link.png" style="width:2vh;"/></a></h2>
-				<p>An Improved Feature Selection Approach and Its Application on Classification Analysis</p>
-				<p>ZongEn Tsai<p>
-                <article style="margin: auto;width:65% ;text-align: justify;line-height: 3vh;">
-                    本研究提出一種<span>特徵挑選方法</span>(Feature Selection)，是基於<span>最大訊息係數</span>(Maximal Information Coefficient , MIC)與<span>K中心分群法</span>(K-Medoid)的結合，藉由從大量的特徵中挑選出具代表性之特徵，並利用<span>機器學習</span>驗證本方法之成效。
-                    首先，利用最大訊息係數計算每對特徵之間的相似度，以及每個特徵與類別之間的相似度。接著，透過K中心分群演算法將所有特徵分成K群，並由每群的特徵中挑選一個與類別之間具有最大訊息係數之特徵做為代表。
-                    最後，可以獲得K個代表性特徵。為了驗證本方法之成效，實驗中考慮了<span>四個不同特性的分類資料集</span>(DataSet)與<span>四個分類器</span>(Classifier)，並與其他三種特徵挑選方法進行比較。
-                    相較於其他特徵挑選方法，實驗結果顯示本方法在大多數資料集與分類器之組合條件下具有<span>較泛用的分類表現</span>。
-                </article>
-            </section>
-
-            <section id="WorkExperience" style="display:none;">
-                <h2># Work Experience</h2>
-                <div class="timeline">
-                    <div class="timeline-item2">
-                      <div class="timeline-content" style="height: fit-content;">
-                        <figure style="margin: auto;">
-                            <img src="img/kmu-logo.jpg" style="height:5vh;" />
-                            <figcaption>高雄醫學大學</figcaption>
-                        </figure>
-                      </div>
-                      <div class="timeline-content" style="text-align: left;">
-                        <h4 style="color: gray;">小兒神經科 / 研究助理 / 2019/09~2020/08 (1年)</h4>
-                        <h3>EEG腦電圖生醫數據 處理 與 分析</h3>
-                        <div class="experience_content" style="font-size:medium;">
-							<div class="horizontal_layout jc_normal"><p class="experience_content_p">處理</p><span class="experience_content_span">腦電圖濾波、去除雜訊、波型標記 (Matlab)</span></div>
-							<div class="horizontal_layout jc_normal"><p class="experience_content_p">分析</p><span class="experience_content_span">運用機器學習建模、調參、分類器、分析 (R)</span></div>
-							<div class="horizontal_layout jc_normal"><p class="experience_content_p">自動</p><span class="experience_content_span">開發程式化前處理流程 (eeglab-stylized)</span></div>
-						</div>
-                      </div>
-                    </div>
-
-                    <div class="timeline-item2">
-                      <div class="timeline-content" style="height: fit-content;">
-                        <figure style="margin: auto;">
-                            <img src="img/auo-logo.png" style="height:3.5vh;" />
-                            <figcaption>友達光電</figcaption>
-                        </figure>
-                      </div>
-                      <div class="timeline-content" style="text-align: left;">
-                        <h4 style="color: gray;">製造部 / 智慧製造工程師 / 2020/09~迄今 (4年+)</h4>
-                        <h3>資訊整合、程式自動化、數據分析、視覺化</h3>
-                        <div class="experience_content" style="font-size:medium;">
-                            <div class="horizontal_layout jc_normal"><p class="experience_content_p" style="margin: 0 .5vw .5vh 0;">整合</p><span class="experience_content_span" style="line-height: normal;margin: 0 .5vw .5vh 0;">製造整合平台、便捷式 MES 操作平台、機台生產資訊串接 (APS.NET C#、SQL)</span></div>
-                            <div class="horizontal_layout jc_normal"><p class="experience_content_p" style="margin: 0 .5vw .5vh 0;">自動</p><span class="experience_content_span" style="line-height: normal;margin: 0 .5vw .5vh 0;">全自動生產、機器人流程自動化 (Python Selenium、RPA UiPath)</span></div>
-                            <div class="horizontal_layout jc_normal"><p class="experience_content_p" style="margin: 0 .5vw .5vh 0;">分析</p><span class="experience_content_span" style="line-height: normal;margin: 0 .5vw .5vh 0;">Cycle Time 解構、Takt Time 三階分析、WIP 檢測 (C#、R)</span></div>
-                            <div class="horizontal_layout jc_normal"><p class="experience_content_p" style="margin: 0 .5vw .5vh 0;">視覺</p><span class="experience_content_span" style="line-height: normal;margin: 0 .5vw .5vh 0;">前端資料視覺化 (HTML、HighCharts、ggplot2、Tableau)</span></div>
-                        </div>	
-                      </div>
-                    </div>
-                  </div>
-            </section>
-
-            <!-- CSS待整理 -->
-            <section id="Project" style="display:none;">
-                <h2># Project</h2>
-                <div id="ProjectContent">
-                  <div class="project-block">
-                    <div><img id="p-a-opi-p" onclick="onclick_img_viewer(this)" src="img/project-advance-opi-platform.png" class="project-img" /></div>
-                    <div style="text-align: left;">
-                        <h3>進階 OPI 操作平台</h3>
-                        <div>
-                            <img src="https://img.shields.io/badge/ASP.NET-C%23-brightgreen" />
-                            <img src="https://img.shields.io/badge/-資訊整合-orange" />
-                            <img src="https://img.shields.io/badge/-前端開發-rgb(255,51,153)" />
-                            <img src="https://img.shields.io/badge/-Web%20Service-blue" />
-                            <img src="https://img.shields.io/badge/-UI/UX-orange" />
-                        </div>
-                        <span>
-                            由使用者為出發點所開發的生產操作(OPI)介面。採用<font>分頁式架構</font>，整合執行前所需各種資訊。
-                            平台包含生產資訊查找、執行紀錄留存，並<font>大量使用 Css 與 Ajax 技術優化UI設計與UX體驗</font>。
-                            平台上線迄今，瀏覽人次<font>超過200+</font>，透過平台執行指令數<font>超過10,000+筆</font>。
-                        </span>
-                    </div>
-                  </div>
-                  <div class="project-block">
-                    <div><img id="p-s-opi" onclick="onclick_img_viewer(this)" src="img/project-selenium-opi.png" class="project-img" /></div>
-                    <div style="text-align: left;">
-                        <h3>生產自動化</h3>
-                        <div>
-                            <img src="https://img.shields.io/badge/Python-3.8.0-rgb(136,0,255)" />
-                            <img src="https://img.shields.io/badge/Selenium-4.8.0-orange" />
-                            <img src="https://img.shields.io/badge/IE Browser-9.0-rgb(255,255,56)" />
-                            <img src="https://img.shields.io/badge/IE Driver-2010-rgb(255,66,255)" />
-                        </div>
-                        <span>
-                            利用Python Selenium控制OPI Web介面，取代人員作業。透過程式自動化Model轉換作業，<font>取代原步驟24步作業</font>完成轉換。
-                            程式步驟歷程包含開啟瀏覽器、選擇、輸入、點擊、懸停、快捷鍵、表格查找、畫面比對等。
-                            <font>終端透過Web介面</font>，讓使用者開關程式、程式情況、執行結果。
-                        </span>
-                    </div>
-                  </div>
-                  <div class="project-block">
-                    <div><img id="p-ct-as" onclick="onclick_img_viewer(this)" src="img/project-cycletime-analysis.png" class="project-img"/></div>
-                    <div style="text-align: left;">
-                        <h3>生產數據分析</h3>
-                        <div>
-                          <img src="https://img.shields.io/badge/ASP.NET-C%23-brightgreen" />
-                          <img src="https://img.shields.io/badge/Console-C%23-green" />
-                          <img src="https://img.shields.io/badge/SSMS-2016-blue" />
-                          <img src="https://img.shields.io/badge/-前端開發-rgb(255,51,153)" />
-                          <img src="https://img.shields.io/badge/HighCharts-8.2.2-rgb(255,255,56)" />
-                        </div>
-                        <span>
-                            階層式生產數據分析。依據產品、模型、製程不同維度進行剖析，並解構其 Cycle Time 的組成結構 Procsee、Wait、Hold Time...等，並利用<font>直觀的視覺化呈現</font>，
-                            直指異常製程道別。<font>發覺生產瓶頸</font>、<font>輔助生產決策</font>、<font>挖掘真因</font>。
-                        </span>
-                    </div>
-                </div>
-                  <div class="project-block">
-                    <div><img id="p-ct-as" onclick="onclick_img_viewer(this)" src="img/project-agv-interface.png" class="project-img"/></div>
-                    <div style="text-align: left;">
-                        <h3>AGV 無人車搬送系統介面</h3>
-                        <div>
-                          <img src="https://img.shields.io/badge/ASP.NET-C%23-brightgreen" />
-                          <img src="https://img.shields.io/badge/-Web%20Service-blue" />
-                          <img src="https://img.shields.io/badge/-前端開發-rgb(255,51,153)" />
-                          <img src="https://img.shields.io/badge/-UI/UX-orange" />
-                          <img src="https://img.shields.io/badge/-Ajax-rgb(136, 0, 255)" />
-                        </div>
-                        <span>
-                            於 ASP.NET Web 框架中，<font>利用前端 Css 建置 AGV 地圖 Layout</font> ，<font>並透過 Web Service 與 Ajax 實現異步更新</font>。而經<font>結構化的路徑點位</font>可由使用者自行維護。
-                            系統介面具體功能包含 : 基礎派送、當前位置與即時狀態、派車防呆卡控、自動回充判斷、後台數據分析 (AGV 稼動率)。
-                        </span>
-                    </div>
-                  </div>                
-
-                  <div class="project-block">
-                    <div><img id="p-wssh-t-ws" onclick="onclick_img_viewer(this)" src="img/project-webscreenshot-to-webservice.png" class="project-img" /></div>
-                    <div style="text-align: left;">
-                        <h3>生產報表轉發架構</h3>
-                        <div>
-                            <img src="https://img.shields.io/badge/ASP.NET-C%23-brightgreen" />
-                            <img src="https://img.shields.io/badge/JS-Html2canvas-red" />
-                            <img src="https://img.shields.io/badge/Console-C%23-green" />
-                        </div>
-                        <span>
-                            運用<font>前端 + 後端實現報表(Web)截圖並轉發行動裝置</font>。利用 Javascript Html2canvas 完成網頁截圖。
-                            透過背景 Console 主控台程式監控併透過 Web Service 發報。將廠內生產報表無痛接軌行動裝置，且<font>適用所有 Html 網頁報表。</font>
-                        </span>
-                    </div>
-                </div>    
-            </section>
-
-            <!-- RWD 待調整 -->
-            <section id="SkillsandDomain" style="display:none;">
-                <h2># Skills & Domain</h2>
-                <div style="display:flex;justify-content: center;align-items: center;">
-                <div class="card">
-                  <div class="card_Title">Skills</div>
-                  <div class="card_Body">
-                    <div id="HighChart_Skills" style="height: 55vh;"></div>
+                <div class="timeline-content" style="text-align: left;">
+                  <h4 style="color: gray;">小兒神經科 / 研究助理 / 2019/09~2020/08 (1年)</h4>
+                  <h3>EEG腦電圖生醫數據 處理 與 分析</h3>
+                  <div class="experience_content" style="font-size:medium;">
+                    <div class="horizontal_layout jc_normal"><p class="experience_content_p">處理</p><span class="experience_content_span">腦電圖濾波、去除雜訊、波型標記 <img src="https://img.shields.io/badge/-Matlab-rgb(41, 41, 255)"></span></div>
+                    <div class="horizontal_layout jc_normal"><p class="experience_content_p">分析</p><span class="experience_content_span">運用機器學習建模、調參、分類器、分析 <img src="https://img.shields.io/badge/-R-rgb(71, 163, 255)"></span></div>
+                    <div class="horizontal_layout jc_normal"><p class="experience_content_p">自動</p><span class="experience_content_span">開發程式化前處理流程 <a href="https://github.com/ZongN/eeglab-stylized?tab=readme-ov-file" target="_blank"><img src="https://img.shields.io/badge/-eeglab-rgb(153, 255, 0)" title="<img src='img/workexperience-eeglab-stylized.png' style='width:25vw;'>"></a></span></div>
                   </div>
                 </div>
-                <div class="card">
-                  <div class="card_Title">Domain</div>
-                  <div class="card_Body">
-                    <div id="HighChart_Domain" style="height: 55vh;"></div>
+                </div>
+                <div class="timeline-item2">
+                  <div class="timeline-content" style="height: fit-content;">
+                    <figure style="margin: auto;">
+                      <img src="img/auo-logo.png" style="height:3.5vh;" />
+                      <figcaption>友達光電</figcaption>
+                    </figure>
+                  </div>
+                  <div class="timeline-content" style="text-align: left;">
+                    <h4 style="color: gray;">製造部 / 智慧製造工程師 / 2020/09~迄今 (4年+)</h4>
+                    <h3>資訊整合、程式自動化、數據分析、視覺化</h3>
+                    <div class="experience_content" style="font-size:medium;">
+                      <div class="horizontal_layout jc_normal"><p class="experience_content_p" style="margin: 0 .5vw .5vh 0;">整合</p><span class="experience_content_span" style="line-height: normal;margin: 0 .5vw .5vh 0;">製造整合平台、便捷式 MES 操作平台、機台生產資訊串接 <img src="https://img.shields.io/badge/ASP.NET-C%23-brightgreen"> <img src="https://img.shields.io/badge/-SQL-rgb(0, 255, 255)"></span></div>
+                      <div class="horizontal_layout jc_normal"><p class="experience_content_p" style="margin: 0 .5vw .5vh 0;">自動</p><span class="experience_content_span" style="line-height: normal;margin: 0 .5vw .5vh 0;">全自動生產、機器人流程自動化 <img src="https://img.shields.io/badge/Console-C%23-green"> <img src="https://img.shields.io/badge/-Python-rgb(136,0,255)"> <a href="https://www.uipath.com/" target="_blank"><img src="https://img.shields.io/badge/RPA-UiPath-rgb(250, 156, 25)" title="<img src='img/workexperience-uipath.png' style='width:50vh;'>"></a></span></div>
+                      <div class="horizontal_layout jc_normal"><p class="experience_content_p" style="margin: 0 .5vw .5vh 0;">分析</p><span class="experience_content_span" style="line-height: normal;margin: 0 .5vw .5vh 0;">Cycle Time 解構、Takt Time 三階分析、WIP 檢測 <img src="https://img.shields.io/badge/ASP.NET-C%23-brightgreen"> <img src="https://img.shields.io/badge/-Python-rgb(136,0,255)"></span></div>
+                      <div class="horizontal_layout jc_normal"><p class="experience_content_p" style="margin: 0 .5vw .5vh 0;">視覺</p><span class="experience_content_span" style="line-height: normal;margin: 0 .5vw .5vh 0;">前端資料視覺化 <img src="https://img.shields.io/badge/-HTML-rgb(255,255,56)"> <img src="https://img.shields.io/badge/-CSS-rgb(235, 192, 0)"> <img src="https://img.shields.io/badge/-HighCharts-rgb(255,51,153)"> <img src="https://img.shields.io/badge/-Tableau-rgb(0, 255, 255)"></span></div>
+                    </div>	
                   </div>
                 </div>
               </div>
-            </section>
+        </section>
 
-            <!-- RWD 待調整 -->
-            <section id="Certificate" style="display:none;">
-                <h2># Certificate</h2>
-                <div class="Certificate_Gallery">
-                    <figure>
-                        <img id="iPAS_IOT" onclick="onclick_img_viewer(this)" src="img/iPAS證照_物聯網.jpg"/>
-                        <figcaption>iPAS 經濟部人才鑑定 / 物聯網應用</figcaption>
-                    </figure>
-                    <figure>
-                        <img id="iPAS_SEC" onclick="onclick_img_viewer(this)" src="img/iPAS證照_資安.jpg"/>
-                        <figcaption>iPAS 經濟部人才鑑定 / 資訊安全</figcaption>
-                    </figure>
-                    <figure>
-                        <img id="GS1_IOT" onclick="onclick_img_viewer(this)" src="img/GS1證照_物聯網.jpg"/>
-                        <figcaption>GS1 Taiwan / EPCIE 物聯網工程師認證</figcaption>
-                    </figure>
+        <section id="Project" style="display:none;">
+          <h2># Project</h2>
+          <div id="ProjectContent">
+            <div class="project-block">
+              <div><img id="p-a-opi-p" onclick="onclick_img_viewer(this)" src="img/project-advance-opi-platform.png" class="project-img" /></div>
+              <div style="text-align: left;">
+                <h3>進階 OPI 操作平台</h3>
+                <div>
+                  <img src="https://img.shields.io/badge/ASP.NET-C%23-brightgreen" />
+                  <img src="https://img.shields.io/badge/-資訊整合-orange" />
+                  <img src="https://img.shields.io/badge/-前端開發-rgb(255,51,153)" />
+                  <img src="https://img.shields.io/badge/-Web%20Service-blue" />
+                  <img src="https://img.shields.io/badge/-UI/UX-orange" />
                 </div>
-            </section>
-        </main>
-        <!-- <footer>
-            <p>Contact Me : <a href="mailto:st901130@gmail.com">st901130@gmail.com</a> / 為確保網頁瀏覽體驗，建議最佳解析度為 1920 x 1080</p>
-        </footer> -->
+                <span>
+                    由使用者為出發點所開發的生產操作(OPI)介面。採用<font>分頁式架構</font>，整合執行前所需各種資訊。
+                    平台包含生產資訊查找、執行紀錄留存，並<font>大量使用 Css 與 Ajax 技術優化UI設計與UX體驗</font>。
+                    平台上線迄今，瀏覽人次<font>超過200+</font>，透過平台執行指令數<font>超過10,000+筆</font>。
+                </span>
+              </div>
+            </div>
+            <div class="project-block">
+              <div><img id="p-s-opi" onclick="onclick_img_viewer(this)" src="img/project-selenium-opi.png" class="project-img" /></div>
+              <div style="text-align: left;">
+                <h3>生產自動化</h3>
+                <div>
+                  <img src="https://img.shields.io/badge/Python-3.8.0-rgb(136,0,255)" />
+                  <img src="https://img.shields.io/badge/Selenium-4.8.0-orange" />
+                  <img src="https://img.shields.io/badge/IE Browser-9.0-rgb(255,255,56)" />
+                  <img src="https://img.shields.io/badge/IE Driver-2010-rgb(255,66,255)" />
+                </div>
+                <span>
+                  利用Python Selenium控制OPI Web介面，取代人員作業。透過程式自動化Model轉換作業，<font>取代原步驟24步作業</font>完成轉換。
+                  程式步驟歷程包含開啟瀏覽器、選擇、輸入、點擊、懸停、快捷鍵、表格查找、畫面比對等。
+                  <font>終端透過Web介面</font>，讓使用者開關程式、程式情況、執行結果。
+                </span>
+              </div>
+            </div>
+            <div class="project-block">
+              <div><img id="p-ct-as" onclick="onclick_img_viewer(this)" src="img/project-cycletime-analysis.png" class="project-img"/></div>
+              <div style="text-align: left;">
+                <h3>生產數據分析</h3>
+                <div>
+                  <img src="https://img.shields.io/badge/ASP.NET-C%23-brightgreen" />
+                  <img src="https://img.shields.io/badge/Console-C%23-green" />
+                  <img src="https://img.shields.io/badge/SSMS-2016-blue" />
+                  <img src="https://img.shields.io/badge/-前端開發-rgb(255,51,153)" />
+                  <img src="https://img.shields.io/badge/HighCharts-8.2.2-rgb(255,255,56)" />
+                </div>
+                <span>
+                  階層式生產數據分析。依據產品、模型、製程不同維度進行剖析，並解構其 Cycle Time 的組成結構 Procsee、Wait、Hold Time...等，並利用<font>直觀的視覺化呈現</font>，
+                  直指異常製程道別。<font>發覺生產瓶頸</font>、<font>輔助生產決策</font>、<font>挖掘真因</font>。
+                </span>
+              </div>
+            </div>
+            <div class="project-block">
+              <div><img id="p-ct-as" onclick="onclick_img_viewer(this)" src="img/project-agv-interface.png" class="project-img"/></div>
+              <div style="text-align: left;">
+                <h3>AGV 無人車搬送系統介面</h3>
+                <div>
+                  <img src="https://img.shields.io/badge/ASP.NET-C%23-brightgreen" />
+                  <img src="https://img.shields.io/badge/-Web%20Service-blue" />
+                  <img src="https://img.shields.io/badge/-前端開發-rgb(255,51,153)" />
+                  <img src="https://img.shields.io/badge/-UI/UX-orange" />
+                  <img src="https://img.shields.io/badge/-Ajax-rgb(136, 0, 255)" />
+                </div>
+                <span>
+                  於 ASP.NET Web 框架中，<font>利用前端 Css 建置 AGV 地圖 Layout</font> ，<font>並透過 Web Service 與 Ajax 實現異步更新</font>。而經<font>結構化的路徑點位</font>可由使用者自行維護。
+                  系統介面具體功能包含 : 基礎派送、當前位置與即時狀態、派車防呆卡控、自動回充判斷、後台數據分析 (AGV 稼動率)。
+                </span>
+              </div>
+            </div>                
+            <div class="project-block">
+              <div><img id="p-wssh-t-ws" onclick="onclick_img_viewer(this)" src="img/project-webscreenshot-to-webservice.png" class="project-img" /></div>
+              <div style="text-align: left;">
+                <h3>生產報表轉發架構</h3>
+                <div>
+                  <img src="https://img.shields.io/badge/ASP.NET-C%23-brightgreen" />
+                  <img src="https://img.shields.io/badge/JS-Html2canvas-red" />
+                  <img src="https://img.shields.io/badge/Console-C%23-green" />
+                </div>
+                <span>
+                  運用<font>前端 + 後端實現報表(Web)截圖並轉發行動裝置</font>。利用 Javascript Html2canvas 完成網頁截圖。
+                  透過背景 Console 主控台程式監控併透過 Web Service 發報。將廠內生產報表無痛接軌行動裝置，且<font>適用所有 Html 網頁報表。</font>
+                </span>
+              </div>
+            </div>    
+        </section>
+
+        <section id="SkillsandDomain" style="display:none;">
+          <h2># Skills & Domain</h2>
+          <div style="display:flex;justify-content: center;align-items: center;">
+          <div class="card">
+            <div class="card_Title">Skills</div>
+            <div class="card_Body">
+              <div id="HighChart_Skills" style="height: 55vh;"></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card_Title">Domain</div>
+            <div class="card_Body">
+              <div id="HighChart_Domain" style="height: 55vh;"></div>
+            </div>
+          </div>
+        </div>
+        </section>
+
+        <section id="Certificate" style="display:none;">
+          <h2># Certificate</h2>
+          <div class="Certificate_Gallery">
+            <figure>
+              <img id="iPAS_IOT" onclick="onclick_img_viewer(this)" src="img/iPAS證照_物聯網.jpg"/>
+              <figcaption>iPAS 經濟部人才鑑定 / 物聯網應用</figcaption>
+            </figure>
+            <figure>
+              <img id="iPAS_SEC" onclick="onclick_img_viewer(this)" src="img/iPAS證照_資安.jpg"/>
+              <figcaption>iPAS 經濟部人才鑑定 / 資訊安全</figcaption>
+            </figure>
+            <figure>
+              <img id="GS1_IOT" onclick="onclick_img_viewer(this)" src="img/GS1證照_物聯網.jpg"/>
+              <figcaption>GS1 Taiwan / EPCIE 物聯網工程師認證</figcaption>
+            </figure>
+          </div>
+        </section>
+      </main>
     </div>
 
     <div class="custom-tooltip" id="tooltip"></div>
-</body>
+  </body>
 </html>
 <script>
+    function onclick_img_viewer(img)
+    {
+      var indexviewer = new Viewer(img, {
+        navbar: false,
+        toolbar: false,
+        title:false
+      });
+    }
 
-	function onclick_img_viewer(img)
-	{
-		var indexviewer = new Viewer(img, {
-			navbar: false,
-			toolbar: false,
-      title:false
-		});
-	}
+    function page_previous_and_next(){
+      // 前一頁、後一頁 標示效果
+      // 設置滾輪停止的延遲時間（毫秒）
+      const scrollStopDelay = 200;
+      // 計時器變數
+      let scrollTimer;
+      // 監聽滾動事件
+      
+      window.addEventListener('scroll', () => {
 
-	function page_previous_and_next(){
-		// 前一頁、後一頁 標示效果
-		// 設置滾輪停止的延遲時間（毫秒）
-		const scrollStopDelay = 200;
-		// 計時器變數
-		let scrollTimer;
-		// 監聽滾動事件
-		
-		window.addEventListener('scroll', () => {
+        // 清除之前的計時器
+        clearTimeout(scrollTimer);
 
-			// 清除之前的計時器
-			clearTimeout(scrollTimer);
+        // 啟動新的計時器以檢測滾輪是否停止
+        scrollTimer = setTimeout(() => {
+          // 滾輪已停止轉動，執行相應的操作
+          // section items
+          const sections = document.getElementsByTagName('section');
+        
+          for(var i=0;i<sections.length;i++){
+            const elementTop = document.getElementById(sections[i].id).getBoundingClientRect().top;
+            // 如果目標元素在視窗內
+            if (elementTop < window.innerHeight) {
+              
+              var last_section_id,next_section_id;
+              
+              // 頁首處理
+              if(i != 0){
+                last_section_id = sections[i-1].id;
+                document.getElementById('last_btn').style.textDecoration='';
+              }else{
+                document.getElementById('last_btn').style.textDecoration ='line-through';
+              }
+              
+              // 頁尾處理
+              if(i != sections.length-1){
+                next_section_id = sections[i+1].id;
+                document.getElementById('next_btn').style.textDecoration='';
+              }else{
+                document.getElementById('next_btn').style.textDecoration ='line-through';
+              }
 
-			// 啟動新的計時器以檢測滾輪是否停止
-			scrollTimer = setTimeout(() => {
-				// 滾輪已停止轉動，執行相應的操作
-				// section items
-				const sections = document.getElementsByTagName('section');
-			
-				for(var i=0;i<sections.length;i++){
-					const elementTop = document.getElementById(sections[i].id).getBoundingClientRect().top;
-					// 如果目標元素在視窗內
-					if (elementTop < window.innerHeight) {
-						
-						var last_section_id,next_section_id;
-						
-						// 頁首處理
-						if(i != 0){
-							last_section_id = sections[i-1].id;
-							document.getElementById('last_btn').style.textDecoration='';
-						}else{
-							document.getElementById('last_btn').style.textDecoration ='line-through';
-						}
-						
-						// 頁尾處理
-						if(i != sections.length-1){
-							next_section_id = sections[i+1].id;
-							document.getElementById('next_btn').style.textDecoration='';
-						}else{
-							document.getElementById('next_btn').style.textDecoration ='line-through';
-						}
+              document.getElementById('next_btn').onclick = function() {
+                scrollToTarget(next_section_id);
+              };
+              
+              document.getElementById('last_btn').onclick = function() {
+                scrollToTarget(last_section_id);
+              };
+            }
+          }
+        }, scrollStopDelay);
+        
+      });
 
-						document.getElementById('next_btn').onclick = function() {
-							scrollToTarget(next_section_id);
-						};
-						
-						document.getElementById('last_btn').onclick = function() {
-							scrollToTarget(last_section_id);
-						};
-					}
-				}
-			}, scrollStopDelay);
-			
-		});
+    }
 
-	}
+    function scrollToTarget(id) {
+      var targetElement = document.getElementById(id);
+      targetElement.scrollIntoView({ behavior: "smooth" }); // 使用 smooth 滾動效果
+    }
 
-	function scrollToTarget(id) {
-		var targetElement = document.getElementById(id);
-		targetElement.scrollIntoView({ behavior: "smooth" }); // 使用 smooth 滾動效果
-	}
+    function how_old_am_i(){
+      const now_year = new Date().getFullYear();
+      document.getElementById('sp_Age').innerHTML = now_year-1995;
+    }
 
-	function how_old_am_i(){
-		const now_year = new Date().getFullYear();
-		document.getElementById('sp_Age').innerHTML = now_year-1995;
-	}
-
-	function load_event(){
-		page_previous_and_next();		
-		how_old_am_i();
-    addHover(document.getElementsByName('aside_li_group')[0]);
-    project_scroll();
-	}
+    function load_event(){
+      page_previous_and_next();		
+      how_old_am_i();
+      addHover(document.getElementsByName('aside_li_group')[0]);
+      project_scroll();
+    }
 
     function asid_li_onmouseover(element){
         
