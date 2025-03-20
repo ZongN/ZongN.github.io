@@ -341,7 +341,7 @@
           <h4><span id="sp_Age"></span>歲 | 嘉義人 | 碩士 | 4 ~ 5 年工作經驗</h4>
           <article>
               <p>2020 年迄今任職於 <span>友達光電</span>，擔任製造部 <span>智慧製造工程師</span><sub>(全端)</sub></p>
-              <p>擁有四年以上的 <span>工廠端開發經驗</span>，具第一線數據分析與整合 <span>實戰經驗</span>。</p>
+              <p>擁有四年以上的 <span>工廠端開發經驗</span>，具第一線生產數據分析與整合的 <span>實戰經驗</span>。</p>
               <p><span>工作能力</span> 與 <span>工作態度</span> 深受主管肯定，<span>獲職等晉升</span> 與 連續 <span>三年久任合約</span> <sub title="連續三年 : 2023、2024、2025">註</sub>。</p>
               <p>個人特質 <span>想法靈活</span>、<span>技能活用</span> <sub title="靈活使用自身技能，達成任務目標。<br/>組合有限的資源，以組合拳的型式完成任務。">註</sub>、<span>多能工</span> <sub title="具備 快速學習 與 適應 的能力，可執行不同類型的任務。<br/>於組織中，負責 開發、需求訪談、協調、報告、撰寫等任務">註</sub>、<span>解決問題能力</span> <sub title="樂於直面問題、拆解問題並各個擊破。<br/>">註</sub>、獨立性佳、自我要求高。</p>
           </article>
@@ -397,6 +397,7 @@
               最後，可以獲得K個代表性特徵。為了驗證本方法之成效，實驗中考慮了<span>四個不同特性的分類資料集</span>(DataSet)與<span>四個分類器</span>(Classifier)，並與其他三種特徵挑選方法進行比較。
               相較於其他特徵挑選方法，實驗結果顯示本方法在大多數資料集與分類器之組合條件下具有<span>較泛用的分類表現</span>。
           </article>
+          <p><a id="t-diagram" href="#" style="color: blue;" onclick="onclick_img_viewer(this,true,'img/thesis-diagram.png')">Diagram ◳</a></p>
         </section>
 
         <section id="WorkExperience" style="display:none;">
@@ -432,7 +433,7 @@
                     <div class="experience_content" style="font-size:medium;">
                       <div class="horizontal_layout jc_normal"><p class="experience_content_p" style="margin: 0 .5vw .5vh 0;">整合</p><span class="experience_content_span" style="line-height: normal;margin: 0 .5vw .5vh 0;">製造整合平台、便捷式 MES 操作平台、機台生產資訊串接 <img src="https://img.shields.io/badge/ASP.NET-C%23-brightgreen"> <img src="https://img.shields.io/badge/-SQL-rgb(0, 255, 255)"></span></div>
                       <div class="horizontal_layout jc_normal"><p class="experience_content_p" style="margin: 0 .5vw .5vh 0;">自動</p><span class="experience_content_span" style="line-height: normal;margin: 0 .5vw .5vh 0;">全自動生產、機器人流程自動化 <img src="https://img.shields.io/badge/Console-C%23-green"> <img src="https://img.shields.io/badge/-Python-rgb(136,0,255)"> <a href="https://www.uipath.com/" target="_blank"><img src="https://img.shields.io/badge/RPA-UiPath-rgb(250, 156, 25)" title="<img src='img/workexperience-uipath.png' style='width:50vh;'>"></a></span></div>
-                      <div class="horizontal_layout jc_normal"><p class="experience_content_p" style="margin: 0 .5vw .5vh 0;">分析</p><span class="experience_content_span" style="line-height: normal;margin: 0 .5vw .5vh 0;">Cycle Time 解構、Takt Time 三階分析、WIP 檢測 <img src="https://img.shields.io/badge/ASP.NET-C%23-brightgreen"> <img src="https://img.shields.io/badge/-Python-rgb(136,0,255)"></span></div>
+                      <div class="horizontal_layout jc_normal"><p class="experience_content_p" style="margin: 0 .5vw .5vh 0;">分析</p><span class="experience_content_span" style="line-height: normal;margin: 0 .5vw .5vh 0;">生產數據解構、瓶頸分析、貨況檢測 <img src="https://img.shields.io/badge/ASP.NET-C%23-brightgreen"> <img src="https://img.shields.io/badge/-Python-rgb(136,0,255)"></span></div>
                       <div class="horizontal_layout jc_normal"><p class="experience_content_p" style="margin: 0 .5vw .5vh 0;">視覺</p><span class="experience_content_span" style="line-height: normal;margin: 0 .5vw .5vh 0;">前端資料視覺化 <img src="https://img.shields.io/badge/-HTML-rgb(255,255,56)"> <img src="https://img.shields.io/badge/-CSS-rgb(235, 192, 0)"> <img src="https://img.shields.io/badge/-HighCharts-rgb(255,51,153)"> <img src="https://img.shields.io/badge/-Tableau-rgb(0, 255, 255)"></span></div>
                     </div>	
                   </div>
@@ -571,13 +572,22 @@
   </body>
 </html>
 <script>
-    function onclick_img_viewer(img)
+    function onclick_img_viewer(img,is_txt,img_path)
     {
+      if(is_txt){
+        img = new Image();
+        img.src = img_path;
+      }
+
       var indexviewer = new Viewer(img, {
         navbar: false,
         toolbar: false,
         title:false
       });
+
+      if(is_txt){
+        indexviewer.show(); // 顯示圖片
+      }      
     }
 
     function page_previous_and_next(){
